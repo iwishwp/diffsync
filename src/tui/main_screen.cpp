@@ -107,10 +107,10 @@ ftxui::Component MainScreen::buildUI() {
 
         // Shortcut hints
         content.push_back(hbox({
-            text("[Space] Toggle") | xflex,
-            text("[F2] Select All") | xflex,
-            text("[F3] Unselect All") | xflex,
-            text("[Enter] Sync") | xflex,
+            text("[Space] Toggle |") | xflex,
+            text("[F2] Select All |") | xflex,
+            text("[F3] Unselect All |") | xflex,
+            text("[Enter] Sync |") | xflex,
             text("[Esc] Quit") | xflex,
         }));
 

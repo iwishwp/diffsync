@@ -1,4 +1,5 @@
 #include "diffsync/tui/main_screen.hpp"
+#include "diffsync/core/rsync.hpp"
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>
@@ -6,7 +7,7 @@
 #include <sstream>
 #include <iomanip>
 #include <thread>
-#include <chrono>
+#include <mutex>
 
 namespace diffsync {
 
@@ -30,13 +31,28 @@ std::string formatBytes(uint64_t size) {
 } // anonymous namespace
 
 MainScreen::MainScreen(GitScanner& scanner, const ConfigManager& config)
-    : scanner_(scanner), config_(config) {
+    : repoRoot_(scanner.repoRoot()) {
+
+    // Get current config and store a copy
+    auto currentConfig = config.getCurrentConfig();
+    if (currentConfig) {
+        remoteConfig_ = *currentConfig;
+    }
 
     // Scan for files
-    std::vector<ChangeFile> files = scanner_.scan();
+    std::vector<ChangeFile> files = scanner.scan();
 
     // Create file list
     fileList_ = std::make_unique<FileList>(files);
+}
+
+MainScreen::~MainScreen() {
+    // Ensure sync thread completes before destruction
+    std::unique_lock<std::mutex> lock(syncMutex_);
+    if (syncThread_.joinable()) {
+        lock.unlock();
+        syncThread_.join();
+    }
 }
 
 SyncResult MainScreen::run() {
@@ -153,10 +169,16 @@ void MainScreen::startSync() {
         return;
     }
 
-    // Get current config
-    auto remoteConfig = config_.getCurrentConfig();
-    if (!remoteConfig) {
+    // Check if we have a valid config
+    if (remoteConfig_.name.empty()) {
         syncStatus_ = "Error: No profile selected";
+        return;
+    }
+
+    // Check if sync thread is already running
+    std::lock_guard<std::mutex> lock(syncMutex_);
+    if (syncThreadRunning_) {
+        syncStatus_ = "Sync already in progress";
         return;
     }
 
@@ -164,18 +186,17 @@ void MainScreen::startSync() {
     syncing_ = true;
     syncStatus_ = "Starting sync...";
     syncProgress_ = 0;
-
-    // Get screen to trigger refresh
-    auto screen = ftxui::ScreenInteractive::TerminalOutput();
+    syncThreadRunning_ = true;
 
     // Run sync in background
-    std::thread([this, selectedFiles, remoteConfig]() {
+    syncThread_ = std::thread([this, selectedFiles]() {
         RsyncExecutor rsync;
         RsyncExecutor::Options options;
         options.compress = true;
         options.showProgress = true;
 
         auto progressCallback = [this](const RsyncExecutor::Progress& progress) {
+            std::lock_guard<std::mutex> lock(syncMutex_);
             syncProgress_ = progress.percent;
             std::ostringstream oss;
             oss << "Syncing: " << progress.filesTransferred << " files, "
@@ -185,24 +206,29 @@ void MainScreen::startSync() {
 
         syncResult_ = rsync.execute(
             selectedFiles,
-            scanner_.repoRoot(),
-            *remoteConfig,
+            repoRoot_,
+            remoteConfig_,
             options,
             progressCallback
         );
 
-        syncing_ = false;
-        if (syncResult_.hasErrors()) {
-            syncStatus_ = "Sync failed";
-        } else {
-            syncStatus_ = "Sync complete";
+        {
+            std::lock_guard<std::mutex> lock(syncMutex_);
+            syncing_ = false;
+            syncThreadRunning_ = false;
+            if (syncResult_.hasErrors()) {
+                syncStatus_ = "Sync failed";
+            } else {
+                syncStatus_ = "Sync complete";
+            }
         }
+        syncCV_.notify_one();
 
         // Exit after sync
         if (screenExit_) {
             screenExit_();
         }
-    }).detach();
+    });
 }
 
 void MainScreen::exitTui() {
@@ -251,17 +277,14 @@ ftxui::Element MainScreen::getSyncElement() const {
 ftxui::Element MainScreen::getHeaderElement() const {
     using namespace ftxui;
 
-    // Get current config
-    auto currentConfig = config_.getCurrentConfig();
-
     std::ostringstream oss;
     oss << "diffsync";
 
-    if (currentConfig) {
-        oss << " - Config: " << currentConfig->name
-            << " (" << currentConfig->user << "@"
-            << currentConfig->host << ":"
-            << currentConfig->remotePath << ")";
+    if (!remoteConfig_.name.empty()) {
+        oss << " - Config: " << remoteConfig_.name
+            << " (" << remoteConfig_.user << "@"
+            << remoteConfig_.host << ":"
+            << remoteConfig_.remotePath << ")";
     } else {
         oss << " - No config selected";
     }

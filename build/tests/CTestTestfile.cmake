@@ -8,3 +8,5 @@ add_test([=[test_types]=] "/Users/demon/codespace/diffsync/build/tests/test_type
 set_tests_properties([=[test_types]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/demon/codespace/diffsync/tests/CMakeLists.txt;11;add_test;/Users/demon/codespace/diffsync/tests/CMakeLists.txt;0;")
 add_test([=[test_git_scanner_integration]=] "/Users/demon/codespace/diffsync/build/tests/test_git_scanner_integration")
 set_tests_properties([=[test_git_scanner_integration]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/demon/codespace/diffsync/tests/CMakeLists.txt;24;add_test;/Users/demon/codespace/diffsync/tests/CMakeLists.txt;0;")
+add_test([=[test_config]=] "/Users/demon/codespace/diffsync/build/tests/test_config")
+set_tests_properties([=[test_config]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/demon/codespace/diffsync/tests/CMakeLists.txt;37;add_test;/Users/demon/codespace/diffsync/tests/CMakeLists.txt;0;")

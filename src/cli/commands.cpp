@@ -1,4 +1,5 @@
 #include "diffsync/cli/parser.hpp"
+#include "diffsync/core/rsync.hpp"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -183,24 +184,14 @@ CliResult syncCommand(GitScanner& scanner, const ConfigManager& config,
         return CliResult::Ok;
     }
 
-    // Build rsync command
-    std::ostringstream cmd;
-    cmd << "rsync -avz";
-
-    if (options.dryRun) {
-        cmd << " --dry-run";
-        std::cout << "Dry-run mode: showing what would be synced\n";
-    }
-
-    // SSH options
-    cmd << " -e 'ssh";
-    if (remoteConfig.port != 22) {
-        cmd << " -p " << remoteConfig.port;
-    }
-    if (!remoteConfig.identityFile.empty()) {
-        cmd << " -i " << remoteConfig.identityFile;
-    }
-    cmd << "'";
+    // Build rsync options
+    RsyncExecutor rsyncExecutor;
+    RsyncExecutor::Options rsyncOptions;
+    rsyncOptions.dryRun = options.dryRun;
+    rsyncOptions.compress = true;
+    rsyncOptions.verbose = options.verbose;
+    rsyncOptions.sshPort = remoteConfig.port;
+    rsyncOptions.identityFile = remoteConfig.identityFile;
 
     // Destination
     std::string dest = remoteConfig.user + "@" + remoteConfig.host + ":" + remoteConfig.remotePath + "/";
@@ -214,19 +205,45 @@ CliResult syncCommand(GitScanner& scanner, const ConfigManager& config,
         }
     }
 
-    if (!options.dryRun) {
-        std::cout << "Syncing...";
-        std::cout.flush();
+    // Setup progress callback
+    auto progressCallback = [&](const RsyncExecutor::Progress& progress) {
+        if (options.verbose && progress.percent > 0) {
+            std::cout << "\r  Progress: " << progress.percent << "% "
+                      << RsyncExecutor::formatBytes(progress.bytesTransferred) << " "
+                      << RsyncExecutor::formatSpeed(progress.speed);
+            if (!progress.eta.empty()) {
+                std::cout << " ETA: " << progress.eta;
+            }
+            std::cout << "        " << std::flush;
+        }
+    };
+
+    // Execute rsync
+    SyncResult syncResult = rsyncExecutor.execute(
+        filesToSync,
+        scanner.repoRoot(),
+        remoteConfig,
+        rsyncOptions,
+        options.verbose ? progressCallback : std::function<void(const RsyncExecutor::Progress&)>()
+    );
+
+    // Handle results
+    if (options.verbose) {
+        std::cout << "\n";
     }
 
-    // TODO: Execute rsync for each file
-    // For now, just simulate
-    if (options.dryRun) {
-        std::cout << "\n[Simulation complete]\n";
-    } else {
-        std::cout << " (not yet implemented)\n";
-        std::cerr << "Error: rsync execution not yet implemented\n";
+    if (syncResult.hasErrors()) {
+        std::cerr << "Sync failed:\n";
+        for (const auto& error : syncResult.errors) {
+            std::cerr << "  " << error << "\n";
+        }
         return CliResult::Error;
+    }
+
+    // Show summary
+    std::cout << "Sync complete: " << syncResult.successCount << " file(s) transferred\n";
+    if (syncResult.failedCount > 0) {
+        std::cout << "  Failed: " << syncResult.failedCount << "\n";
     }
 
     return CliResult::Ok;

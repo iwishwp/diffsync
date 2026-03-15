@@ -114,11 +114,101 @@ CMakeFiles/diffsync.dir/src/core/git_scanner.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/diffsync.dir/src/core/git_scanner.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/demon/codespace/diffsync/src/core/git_scanner.cpp -o CMakeFiles/diffsync.dir/src/core/git_scanner.cpp.s
 
+CMakeFiles/diffsync.dir/src/core/config.cpp.o: CMakeFiles/diffsync.dir/flags.make
+CMakeFiles/diffsync.dir/src/core/config.cpp.o: /Users/demon/codespace/diffsync/src/core/config.cpp
+CMakeFiles/diffsync.dir/src/core/config.cpp.o: CMakeFiles/diffsync.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/diffsync.dir/src/core/config.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/diffsync.dir/src/core/config.cpp.o -MF CMakeFiles/diffsync.dir/src/core/config.cpp.o.d -o CMakeFiles/diffsync.dir/src/core/config.cpp.o -c /Users/demon/codespace/diffsync/src/core/config.cpp
+
+CMakeFiles/diffsync.dir/src/core/config.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/diffsync.dir/src/core/config.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/demon/codespace/diffsync/src/core/config.cpp > CMakeFiles/diffsync.dir/src/core/config.cpp.i
+
+CMakeFiles/diffsync.dir/src/core/config.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/diffsync.dir/src/core/config.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/demon/codespace/diffsync/src/core/config.cpp -o CMakeFiles/diffsync.dir/src/core/config.cpp.s
+
+CMakeFiles/diffsync.dir/src/core/rsync.cpp.o: CMakeFiles/diffsync.dir/flags.make
+CMakeFiles/diffsync.dir/src/core/rsync.cpp.o: /Users/demon/codespace/diffsync/src/core/rsync.cpp
+CMakeFiles/diffsync.dir/src/core/rsync.cpp.o: CMakeFiles/diffsync.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/diffsync.dir/src/core/rsync.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/diffsync.dir/src/core/rsync.cpp.o -MF CMakeFiles/diffsync.dir/src/core/rsync.cpp.o.d -o CMakeFiles/diffsync.dir/src/core/rsync.cpp.o -c /Users/demon/codespace/diffsync/src/core/rsync.cpp
+
+CMakeFiles/diffsync.dir/src/core/rsync.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/diffsync.dir/src/core/rsync.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/demon/codespace/diffsync/src/core/rsync.cpp > CMakeFiles/diffsync.dir/src/core/rsync.cpp.i
+
+CMakeFiles/diffsync.dir/src/core/rsync.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/diffsync.dir/src/core/rsync.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/demon/codespace/diffsync/src/core/rsync.cpp -o CMakeFiles/diffsync.dir/src/core/rsync.cpp.s
+
+CMakeFiles/diffsync.dir/src/cli/parser.cpp.o: CMakeFiles/diffsync.dir/flags.make
+CMakeFiles/diffsync.dir/src/cli/parser.cpp.o: /Users/demon/codespace/diffsync/src/cli/parser.cpp
+CMakeFiles/diffsync.dir/src/cli/parser.cpp.o: CMakeFiles/diffsync.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/diffsync.dir/src/cli/parser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/diffsync.dir/src/cli/parser.cpp.o -MF CMakeFiles/diffsync.dir/src/cli/parser.cpp.o.d -o CMakeFiles/diffsync.dir/src/cli/parser.cpp.o -c /Users/demon/codespace/diffsync/src/cli/parser.cpp
+
+CMakeFiles/diffsync.dir/src/cli/parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/diffsync.dir/src/cli/parser.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/demon/codespace/diffsync/src/cli/parser.cpp > CMakeFiles/diffsync.dir/src/cli/parser.cpp.i
+
+CMakeFiles/diffsync.dir/src/cli/parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/diffsync.dir/src/cli/parser.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/demon/codespace/diffsync/src/cli/parser.cpp -o CMakeFiles/diffsync.dir/src/cli/parser.cpp.s
+
+CMakeFiles/diffsync.dir/src/cli/commands.cpp.o: CMakeFiles/diffsync.dir/flags.make
+CMakeFiles/diffsync.dir/src/cli/commands.cpp.o: /Users/demon/codespace/diffsync/src/cli/commands.cpp
+CMakeFiles/diffsync.dir/src/cli/commands.cpp.o: CMakeFiles/diffsync.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/diffsync.dir/src/cli/commands.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/diffsync.dir/src/cli/commands.cpp.o -MF CMakeFiles/diffsync.dir/src/cli/commands.cpp.o.d -o CMakeFiles/diffsync.dir/src/cli/commands.cpp.o -c /Users/demon/codespace/diffsync/src/cli/commands.cpp
+
+CMakeFiles/diffsync.dir/src/cli/commands.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/diffsync.dir/src/cli/commands.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/demon/codespace/diffsync/src/cli/commands.cpp > CMakeFiles/diffsync.dir/src/cli/commands.cpp.i
+
+CMakeFiles/diffsync.dir/src/cli/commands.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/diffsync.dir/src/cli/commands.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/demon/codespace/diffsync/src/cli/commands.cpp -o CMakeFiles/diffsync.dir/src/cli/commands.cpp.s
+
+CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o: CMakeFiles/diffsync.dir/flags.make
+CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o: /Users/demon/codespace/diffsync/src/tui/file_list.cpp
+CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o: CMakeFiles/diffsync.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o -MF CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o.d -o CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o -c /Users/demon/codespace/diffsync/src/tui/file_list.cpp
+
+CMakeFiles/diffsync.dir/src/tui/file_list.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/diffsync.dir/src/tui/file_list.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/demon/codespace/diffsync/src/tui/file_list.cpp > CMakeFiles/diffsync.dir/src/tui/file_list.cpp.i
+
+CMakeFiles/diffsync.dir/src/tui/file_list.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/diffsync.dir/src/tui/file_list.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/demon/codespace/diffsync/src/tui/file_list.cpp -o CMakeFiles/diffsync.dir/src/tui/file_list.cpp.s
+
+CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o: CMakeFiles/diffsync.dir/flags.make
+CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o: /Users/demon/codespace/diffsync/src/tui/main_screen.cpp
+CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o: CMakeFiles/diffsync.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o -MF CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o.d -o CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o -c /Users/demon/codespace/diffsync/src/tui/main_screen.cpp
+
+CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/demon/codespace/diffsync/src/tui/main_screen.cpp > CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.i
+
+CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/demon/codespace/diffsync/src/tui/main_screen.cpp -o CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.s
+
 # Object files for target diffsync
 diffsync_OBJECTS = \
 "CMakeFiles/diffsync.dir/src/main.cpp.o" \
 "CMakeFiles/diffsync.dir/src/types.cpp.o" \
-"CMakeFiles/diffsync.dir/src/core/git_scanner.cpp.o"
+"CMakeFiles/diffsync.dir/src/core/git_scanner.cpp.o" \
+"CMakeFiles/diffsync.dir/src/core/config.cpp.o" \
+"CMakeFiles/diffsync.dir/src/core/rsync.cpp.o" \
+"CMakeFiles/diffsync.dir/src/cli/parser.cpp.o" \
+"CMakeFiles/diffsync.dir/src/cli/commands.cpp.o" \
+"CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o" \
+"CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o"
 
 # External object files for target diffsync
 diffsync_EXTERNAL_OBJECTS =
@@ -126,13 +216,19 @@ diffsync_EXTERNAL_OBJECTS =
 diffsync: CMakeFiles/diffsync.dir/src/main.cpp.o
 diffsync: CMakeFiles/diffsync.dir/src/types.cpp.o
 diffsync: CMakeFiles/diffsync.dir/src/core/git_scanner.cpp.o
+diffsync: CMakeFiles/diffsync.dir/src/core/config.cpp.o
+diffsync: CMakeFiles/diffsync.dir/src/core/rsync.cpp.o
+diffsync: CMakeFiles/diffsync.dir/src/cli/parser.cpp.o
+diffsync: CMakeFiles/diffsync.dir/src/cli/commands.cpp.o
+diffsync: CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o
+diffsync: CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o
 diffsync: CMakeFiles/diffsync.dir/build.make
 diffsync: _deps/ftxui-build/libftxui-screen.a
 diffsync: _deps/ftxui-build/libftxui-component.a
 diffsync: _deps/ftxui-build/libftxui-dom.a
 diffsync: _deps/ftxui-build/libftxui-screen.a
 diffsync: CMakeFiles/diffsync.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable diffsync"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable diffsync"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/diffsync.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

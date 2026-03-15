@@ -219,6 +219,44 @@ test_git_scanner_integration/fast:
 	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_git_scanner_integration.dir/build.make tests/CMakeFiles/test_git_scanner_integration.dir/build
 .PHONY : test_git_scanner_integration/fast
 
+# Convenience name for target.
+tests/CMakeFiles/test_config.dir/rule:
+	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_config.dir/rule
+.PHONY : tests/CMakeFiles/test_config.dir/rule
+
+# Convenience name for target.
+test_config: tests/CMakeFiles/test_config.dir/rule
+.PHONY : test_config
+
+# fast build rule for target.
+test_config/fast:
+	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/build
+.PHONY : test_config/fast
+
+__/src/core/config.o: __/src/core/config.cpp.o
+.PHONY : __/src/core/config.o
+
+# target to build an object file
+__/src/core/config.cpp.o:
+	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/__/src/core/config.cpp.o
+.PHONY : __/src/core/config.cpp.o
+
+__/src/core/config.i: __/src/core/config.cpp.i
+.PHONY : __/src/core/config.i
+
+# target to preprocess a source file
+__/src/core/config.cpp.i:
+	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/__/src/core/config.cpp.i
+.PHONY : __/src/core/config.cpp.i
+
+__/src/core/config.s: __/src/core/config.cpp.s
+.PHONY : __/src/core/config.s
+
+# target to generate assembly for a file
+__/src/core/config.cpp.s:
+	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/__/src/core/config.cpp.s
+.PHONY : __/src/core/config.cpp.s
+
 __/src/core/git_scanner.o: __/src/core/git_scanner.cpp.o
 .PHONY : __/src/core/git_scanner.o
 
@@ -250,6 +288,7 @@ __/src/types.o: __/src/types.cpp.o
 __/src/types.cpp.o:
 	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_types.dir/build.make tests/CMakeFiles/test_types.dir/__/src/types.cpp.o
 	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_git_scanner_integration.dir/build.make tests/CMakeFiles/test_git_scanner_integration.dir/__/src/types.cpp.o
+	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/__/src/types.cpp.o
 .PHONY : __/src/types.cpp.o
 
 __/src/types.i: __/src/types.cpp.i
@@ -259,6 +298,7 @@ __/src/types.i: __/src/types.cpp.i
 __/src/types.cpp.i:
 	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_types.dir/build.make tests/CMakeFiles/test_types.dir/__/src/types.cpp.i
 	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_git_scanner_integration.dir/build.make tests/CMakeFiles/test_git_scanner_integration.dir/__/src/types.cpp.i
+	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/__/src/types.cpp.i
 .PHONY : __/src/types.cpp.i
 
 __/src/types.s: __/src/types.cpp.s
@@ -268,6 +308,7 @@ __/src/types.s: __/src/types.cpp.s
 __/src/types.cpp.s:
 	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_types.dir/build.make tests/CMakeFiles/test_types.dir/__/src/types.cpp.s
 	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_git_scanner_integration.dir/build.make tests/CMakeFiles/test_git_scanner_integration.dir/__/src/types.cpp.s
+	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/__/src/types.cpp.s
 .PHONY : __/src/types.cpp.s
 
 integration/test_git_scanner_integration.o: integration/test_git_scanner_integration.cpp.o
@@ -293,6 +334,30 @@ integration/test_git_scanner_integration.s: integration/test_git_scanner_integra
 integration/test_git_scanner_integration.cpp.s:
 	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_git_scanner_integration.dir/build.make tests/CMakeFiles/test_git_scanner_integration.dir/integration/test_git_scanner_integration.cpp.s
 .PHONY : integration/test_git_scanner_integration.cpp.s
+
+unit/test_config.o: unit/test_config.cpp.o
+.PHONY : unit/test_config.o
+
+# target to build an object file
+unit/test_config.cpp.o:
+	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/unit/test_config.cpp.o
+.PHONY : unit/test_config.cpp.o
+
+unit/test_config.i: unit/test_config.cpp.i
+.PHONY : unit/test_config.i
+
+# target to preprocess a source file
+unit/test_config.cpp.i:
+	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/unit/test_config.cpp.i
+.PHONY : unit/test_config.cpp.i
+
+unit/test_config.s: unit/test_config.cpp.s
+.PHONY : unit/test_config.s
+
+# target to generate assembly for a file
+unit/test_config.cpp.s:
+	cd /Users/demon/codespace/diffsync/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/unit/test_config.cpp.s
+.PHONY : unit/test_config.cpp.s
 
 unit/test_types.o: unit/test_types.cpp.o
 .PHONY : unit/test_types.o
@@ -333,8 +398,12 @@ help:
 	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... test_config"
 	@echo "... test_git_scanner_integration"
 	@echo "... test_types"
+	@echo "... __/src/core/config.o"
+	@echo "... __/src/core/config.i"
+	@echo "... __/src/core/config.s"
 	@echo "... __/src/core/git_scanner.o"
 	@echo "... __/src/core/git_scanner.i"
 	@echo "... __/src/core/git_scanner.s"
@@ -344,6 +413,9 @@ help:
 	@echo "... integration/test_git_scanner_integration.o"
 	@echo "... integration/test_git_scanner_integration.i"
 	@echo "... integration/test_git_scanner_integration.s"
+	@echo "... unit/test_config.o"
+	@echo "... unit/test_config.i"
+	@echo "... unit/test_config.s"
 	@echo "... unit/test_types.o"
 	@echo "... unit/test_types.i"
 	@echo "... unit/test_types.s"

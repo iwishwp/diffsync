@@ -18,6 +18,42 @@
   "output": "CMakeFiles/diffsync.dir/src/core/git_scanner.cpp.o"
 },
 {
+  "directory": "/Users/demon/codespace/diffsync/build",
+  "command": "/usr/bin/c++ -DBUILD_TUI=1 -I/Users/demon/codespace/diffsync/include -isystem /Users/demon/codespace/diffsync/build/_deps/cli11-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/tomlplusplus-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/ftxui-src/include -g -std=gnu++20 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/diffsync.dir/src/core/config.cpp.o -c /Users/demon/codespace/diffsync/src/core/config.cpp",
+  "file": "/Users/demon/codespace/diffsync/src/core/config.cpp",
+  "output": "CMakeFiles/diffsync.dir/src/core/config.cpp.o"
+},
+{
+  "directory": "/Users/demon/codespace/diffsync/build",
+  "command": "/usr/bin/c++ -DBUILD_TUI=1 -I/Users/demon/codespace/diffsync/include -isystem /Users/demon/codespace/diffsync/build/_deps/cli11-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/tomlplusplus-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/ftxui-src/include -g -std=gnu++20 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/diffsync.dir/src/core/rsync.cpp.o -c /Users/demon/codespace/diffsync/src/core/rsync.cpp",
+  "file": "/Users/demon/codespace/diffsync/src/core/rsync.cpp",
+  "output": "CMakeFiles/diffsync.dir/src/core/rsync.cpp.o"
+},
+{
+  "directory": "/Users/demon/codespace/diffsync/build",
+  "command": "/usr/bin/c++ -DBUILD_TUI=1 -I/Users/demon/codespace/diffsync/include -isystem /Users/demon/codespace/diffsync/build/_deps/cli11-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/tomlplusplus-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/ftxui-src/include -g -std=gnu++20 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/diffsync.dir/src/cli/parser.cpp.o -c /Users/demon/codespace/diffsync/src/cli/parser.cpp",
+  "file": "/Users/demon/codespace/diffsync/src/cli/parser.cpp",
+  "output": "CMakeFiles/diffsync.dir/src/cli/parser.cpp.o"
+},
+{
+  "directory": "/Users/demon/codespace/diffsync/build",
+  "command": "/usr/bin/c++ -DBUILD_TUI=1 -I/Users/demon/codespace/diffsync/include -isystem /Users/demon/codespace/diffsync/build/_deps/cli11-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/tomlplusplus-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/ftxui-src/include -g -std=gnu++20 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/diffsync.dir/src/cli/commands.cpp.o -c /Users/demon/codespace/diffsync/src/cli/commands.cpp",
+  "file": "/Users/demon/codespace/diffsync/src/cli/commands.cpp",
+  "output": "CMakeFiles/diffsync.dir/src/cli/commands.cpp.o"
+},
+{
+  "directory": "/Users/demon/codespace/diffsync/build",
+  "command": "/usr/bin/c++ -DBUILD_TUI=1 -I/Users/demon/codespace/diffsync/include -isystem /Users/demon/codespace/diffsync/build/_deps/cli11-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/tomlplusplus-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/ftxui-src/include -g -std=gnu++20 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o -c /Users/demon/codespace/diffsync/src/tui/file_list.cpp",
+  "file": "/Users/demon/codespace/diffsync/src/tui/file_list.cpp",
+  "output": "CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o"
+},
+{
+  "directory": "/Users/demon/codespace/diffsync/build",
+  "command": "/usr/bin/c++ -DBUILD_TUI=1 -I/Users/demon/codespace/diffsync/include -isystem /Users/demon/codespace/diffsync/build/_deps/cli11-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/tomlplusplus-src/include -isystem /Users/demon/codespace/diffsync/build/_deps/ftxui-src/include -g -std=gnu++20 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o -c /Users/demon/codespace/diffsync/src/tui/main_screen.cpp",
+  "file": "/Users/demon/codespace/diffsync/src/tui/main_screen.cpp",
+  "output": "CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o"
+},
+{
   "directory": "/Users/demon/codespace/diffsync/build/_deps/ftxui-build",
   "command": "/usr/bin/c++  -I/Users/demon/codespace/diffsync/build/_deps/ftxui-src/src -I/Users/demon/codespace/diffsync/build/_deps/ftxui-src/include -g -std=gnu++20 -arch arm64 -o CMakeFiles/screen.dir/src/ftxui/screen/box.cpp.o -c /Users/demon/codespace/diffsync/build/_deps/ftxui-src/src/ftxui/screen/box.cpp",
   "file": "/Users/demon/codespace/diffsync/build/_deps/ftxui-src/src/ftxui/screen/box.cpp",
@@ -460,5 +496,23 @@
   "command": "/usr/bin/c++  -I/Users/demon/codespace/diffsync/tests/../include -g -std=gnu++20 -arch arm64 -o CMakeFiles/test_git_scanner_integration.dir/__/src/core/git_scanner.cpp.o -c /Users/demon/codespace/diffsync/src/core/git_scanner.cpp",
   "file": "/Users/demon/codespace/diffsync/src/core/git_scanner.cpp",
   "output": "tests/CMakeFiles/test_git_scanner_integration.dir/__/src/core/git_scanner.cpp.o"
+},
+{
+  "directory": "/Users/demon/codespace/diffsync/build/tests",
+  "command": "/usr/bin/c++  -I/Users/demon/codespace/diffsync/tests/../include -g -std=gnu++20 -arch arm64 -o CMakeFiles/test_config.dir/unit/test_config.cpp.o -c /Users/demon/codespace/diffsync/tests/unit/test_config.cpp",
+  "file": "/Users/demon/codespace/diffsync/tests/unit/test_config.cpp",
+  "output": "tests/CMakeFiles/test_config.dir/unit/test_config.cpp.o"
+},
+{
+  "directory": "/Users/demon/codespace/diffsync/build/tests",
+  "command": "/usr/bin/c++  -I/Users/demon/codespace/diffsync/tests/../include -g -std=gnu++20 -arch arm64 -o CMakeFiles/test_config.dir/__/src/types.cpp.o -c /Users/demon/codespace/diffsync/src/types.cpp",
+  "file": "/Users/demon/codespace/diffsync/src/types.cpp",
+  "output": "tests/CMakeFiles/test_config.dir/__/src/types.cpp.o"
+},
+{
+  "directory": "/Users/demon/codespace/diffsync/build/tests",
+  "command": "/usr/bin/c++  -I/Users/demon/codespace/diffsync/tests/../include -g -std=gnu++20 -arch arm64 -o CMakeFiles/test_config.dir/__/src/core/config.cpp.o -c /Users/demon/codespace/diffsync/src/core/config.cpp",
+  "file": "/Users/demon/codespace/diffsync/src/core/config.cpp",
+  "output": "tests/CMakeFiles/test_config.dir/__/src/core/config.cpp.o"
 }
 ]

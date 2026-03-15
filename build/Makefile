@@ -282,6 +282,91 @@ test_git_scanner_integration/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_git_scanner_integration.dir/build.make tests/CMakeFiles/test_git_scanner_integration.dir/build
 .PHONY : test_git_scanner_integration/fast
 
+#=============================================================================
+# Target rules for targets named test_config
+
+# Build rule for target.
+test_config: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_config
+.PHONY : test_config
+
+# fast build rule for target.
+test_config/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/build
+.PHONY : test_config/fast
+
+src/cli/commands.o: src/cli/commands.cpp.o
+.PHONY : src/cli/commands.o
+
+# target to build an object file
+src/cli/commands.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/cli/commands.cpp.o
+.PHONY : src/cli/commands.cpp.o
+
+src/cli/commands.i: src/cli/commands.cpp.i
+.PHONY : src/cli/commands.i
+
+# target to preprocess a source file
+src/cli/commands.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/cli/commands.cpp.i
+.PHONY : src/cli/commands.cpp.i
+
+src/cli/commands.s: src/cli/commands.cpp.s
+.PHONY : src/cli/commands.s
+
+# target to generate assembly for a file
+src/cli/commands.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/cli/commands.cpp.s
+.PHONY : src/cli/commands.cpp.s
+
+src/cli/parser.o: src/cli/parser.cpp.o
+.PHONY : src/cli/parser.o
+
+# target to build an object file
+src/cli/parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/cli/parser.cpp.o
+.PHONY : src/cli/parser.cpp.o
+
+src/cli/parser.i: src/cli/parser.cpp.i
+.PHONY : src/cli/parser.i
+
+# target to preprocess a source file
+src/cli/parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/cli/parser.cpp.i
+.PHONY : src/cli/parser.cpp.i
+
+src/cli/parser.s: src/cli/parser.cpp.s
+.PHONY : src/cli/parser.s
+
+# target to generate assembly for a file
+src/cli/parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/cli/parser.cpp.s
+.PHONY : src/cli/parser.cpp.s
+
+src/core/config.o: src/core/config.cpp.o
+.PHONY : src/core/config.o
+
+# target to build an object file
+src/core/config.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/core/config.cpp.o
+.PHONY : src/core/config.cpp.o
+
+src/core/config.i: src/core/config.cpp.i
+.PHONY : src/core/config.i
+
+# target to preprocess a source file
+src/core/config.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/core/config.cpp.i
+.PHONY : src/core/config.cpp.i
+
+src/core/config.s: src/core/config.cpp.s
+.PHONY : src/core/config.s
+
+# target to generate assembly for a file
+src/core/config.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/core/config.cpp.s
+.PHONY : src/core/config.cpp.s
+
 src/core/git_scanner.o: src/core/git_scanner.cpp.o
 .PHONY : src/core/git_scanner.o
 
@@ -306,6 +391,30 @@ src/core/git_scanner.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/core/git_scanner.cpp.s
 .PHONY : src/core/git_scanner.cpp.s
 
+src/core/rsync.o: src/core/rsync.cpp.o
+.PHONY : src/core/rsync.o
+
+# target to build an object file
+src/core/rsync.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/core/rsync.cpp.o
+.PHONY : src/core/rsync.cpp.o
+
+src/core/rsync.i: src/core/rsync.cpp.i
+.PHONY : src/core/rsync.i
+
+# target to preprocess a source file
+src/core/rsync.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/core/rsync.cpp.i
+.PHONY : src/core/rsync.cpp.i
+
+src/core/rsync.s: src/core/rsync.cpp.s
+.PHONY : src/core/rsync.s
+
+# target to generate assembly for a file
+src/core/rsync.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/core/rsync.cpp.s
+.PHONY : src/core/rsync.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -329,6 +438,54 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/tui/file_list.o: src/tui/file_list.cpp.o
+.PHONY : src/tui/file_list.o
+
+# target to build an object file
+src/tui/file_list.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/tui/file_list.cpp.o
+.PHONY : src/tui/file_list.cpp.o
+
+src/tui/file_list.i: src/tui/file_list.cpp.i
+.PHONY : src/tui/file_list.i
+
+# target to preprocess a source file
+src/tui/file_list.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/tui/file_list.cpp.i
+.PHONY : src/tui/file_list.cpp.i
+
+src/tui/file_list.s: src/tui/file_list.cpp.s
+.PHONY : src/tui/file_list.s
+
+# target to generate assembly for a file
+src/tui/file_list.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/tui/file_list.cpp.s
+.PHONY : src/tui/file_list.cpp.s
+
+src/tui/main_screen.o: src/tui/main_screen.cpp.o
+.PHONY : src/tui/main_screen.o
+
+# target to build an object file
+src/tui/main_screen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.o
+.PHONY : src/tui/main_screen.cpp.o
+
+src/tui/main_screen.i: src/tui/main_screen.cpp.i
+.PHONY : src/tui/main_screen.i
+
+# target to preprocess a source file
+src/tui/main_screen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.i
+.PHONY : src/tui/main_screen.cpp.i
+
+src/tui/main_screen.s: src/tui/main_screen.cpp.s
+.PHONY : src/tui/main_screen.s
+
+# target to generate assembly for a file
+src/tui/main_screen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/src/tui/main_screen.cpp.s
+.PHONY : src/tui/main_screen.cpp.s
 
 src/types.o: src/types.cpp.o
 .PHONY : src/types.o
@@ -374,14 +531,33 @@ help:
 	@echo "... diffsync"
 	@echo "... dom"
 	@echo "... screen"
+	@echo "... test_config"
 	@echo "... test_git_scanner_integration"
 	@echo "... test_types"
+	@echo "... src/cli/commands.o"
+	@echo "... src/cli/commands.i"
+	@echo "... src/cli/commands.s"
+	@echo "... src/cli/parser.o"
+	@echo "... src/cli/parser.i"
+	@echo "... src/cli/parser.s"
+	@echo "... src/core/config.o"
+	@echo "... src/core/config.i"
+	@echo "... src/core/config.s"
 	@echo "... src/core/git_scanner.o"
 	@echo "... src/core/git_scanner.i"
 	@echo "... src/core/git_scanner.s"
+	@echo "... src/core/rsync.o"
+	@echo "... src/core/rsync.i"
+	@echo "... src/core/rsync.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/tui/file_list.o"
+	@echo "... src/tui/file_list.i"
+	@echo "... src/tui/file_list.s"
+	@echo "... src/tui/main_screen.o"
+	@echo "... src/tui/main_screen.i"
+	@echo "... src/tui/main_screen.s"
 	@echo "... src/types.o"
 	@echo "... src/types.i"
 	@echo "... src/types.s"

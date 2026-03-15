@@ -77,6 +77,7 @@
 /Users/demon/codespace/diffsync/build/_deps/cli11-build/src/CMakeFiles/install/strip.dir
 /Users/demon/codespace/diffsync/build/tests/CMakeFiles/test_types.dir
 /Users/demon/codespace/diffsync/build/tests/CMakeFiles/test_git_scanner_integration.dir
+/Users/demon/codespace/diffsync/build/tests/CMakeFiles/test_config.dir
 /Users/demon/codespace/diffsync/build/tests/CMakeFiles/package.dir
 /Users/demon/codespace/diffsync/build/tests/CMakeFiles/package_source.dir
 /Users/demon/codespace/diffsync/build/tests/CMakeFiles/test.dir

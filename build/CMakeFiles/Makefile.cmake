@@ -114,4 +114,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "_deps/cli11-build/src/CMakeFiles/CLI11.dir/DependInfo.cmake"
   "tests/CMakeFiles/test_types.dir/DependInfo.cmake"
   "tests/CMakeFiles/test_git_scanner_integration.dir/DependInfo.cmake"
+  "tests/CMakeFiles/test_config.dir/DependInfo.cmake"
   )

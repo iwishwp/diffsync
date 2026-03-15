@@ -249,11 +249,13 @@ _deps/tomlplusplus-build/clean:
 # Recursive "all" directory target.
 tests/all: tests/CMakeFiles/test_types.dir/all
 tests/all: tests/CMakeFiles/test_git_scanner_integration.dir/all
+tests/all: tests/CMakeFiles/test_config.dir/all
 .PHONY : tests/all
 
 # Recursive "codegen" directory target.
 tests/codegen: tests/CMakeFiles/test_types.dir/codegen
 tests/codegen: tests/CMakeFiles/test_git_scanner_integration.dir/codegen
+tests/codegen: tests/CMakeFiles/test_config.dir/codegen
 .PHONY : tests/codegen
 
 # Recursive "preinstall" directory target.
@@ -263,6 +265,7 @@ tests/preinstall:
 # Recursive "clean" directory target.
 tests/clean: tests/CMakeFiles/test_types.dir/clean
 tests/clean: tests/CMakeFiles/test_git_scanner_integration.dir/clean
+tests/clean: tests/CMakeFiles/test_config.dir/clean
 .PHONY : tests/clean
 
 #=============================================================================
@@ -275,12 +278,12 @@ CMakeFiles/diffsync.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 CMakeFiles/diffsync.dir/all: _deps/cli11-build/src/CMakeFiles/CLI11.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=26,27,28,29 "Built target diffsync"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=26,27,28,29,30,31,32,33,34,35 "Built target diffsync"
 .PHONY : CMakeFiles/diffsync.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/diffsync.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/demon/codespace/diffsync/build/CMakeFiles 76
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/demon/codespace/diffsync/build/CMakeFiles 82
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/diffsync.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/demon/codespace/diffsync/build/CMakeFiles 0
 .PHONY : CMakeFiles/diffsync.dir/rule
@@ -292,7 +295,7 @@ diffsync: CMakeFiles/diffsync.dir/rule
 # codegen rule for target.
 CMakeFiles/diffsync.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffsync.dir/build.make CMakeFiles/diffsync.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=26,27,28,29 "Finished codegen for target diffsync"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=26,27,28,29,30,31,32,33,34,35 "Finished codegen for target diffsync"
 .PHONY : CMakeFiles/diffsync.dir/codegen
 
 # clean rule for target.
@@ -307,7 +310,7 @@ CMakeFiles/diffsync.dir/clean:
 _deps/ftxui-build/CMakeFiles/screen.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/ftxui-build/CMakeFiles/screen.dir/build.make _deps/ftxui-build/CMakeFiles/screen.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/ftxui-build/CMakeFiles/screen.dir/build.make _deps/ftxui-build/CMakeFiles/screen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=70,71,72,73,74,75,76 "Built target screen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=76,77,78,79,80,81,82 "Built target screen"
 .PHONY : _deps/ftxui-build/CMakeFiles/screen.dir/all
 
 # Build rule for subdir invocation for target.
@@ -324,7 +327,7 @@ screen: _deps/ftxui-build/CMakeFiles/screen.dir/rule
 # codegen rule for target.
 _deps/ftxui-build/CMakeFiles/screen.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/ftxui-build/CMakeFiles/screen.dir/build.make _deps/ftxui-build/CMakeFiles/screen.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=70,71,72,73,74,75,76 "Finished codegen for target screen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=76,77,78,79,80,81,82 "Finished codegen for target screen"
 .PHONY : _deps/ftxui-build/CMakeFiles/screen.dir/codegen
 
 # clean rule for target.
@@ -339,7 +342,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/clean:
 _deps/ftxui-build/CMakeFiles/dom.dir/all: _deps/ftxui-build/CMakeFiles/screen.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/ftxui-build/CMakeFiles/dom.dir/build.make _deps/ftxui-build/CMakeFiles/dom.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/ftxui-build/CMakeFiles/dom.dir/build.make _deps/ftxui-build/CMakeFiles/dom.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69 "Built target dom"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75 "Built target dom"
 .PHONY : _deps/ftxui-build/CMakeFiles/dom.dir/all
 
 # Build rule for subdir invocation for target.
@@ -356,7 +359,7 @@ dom: _deps/ftxui-build/CMakeFiles/dom.dir/rule
 # codegen rule for target.
 _deps/ftxui-build/CMakeFiles/dom.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/ftxui-build/CMakeFiles/dom.dir/build.make _deps/ftxui-build/CMakeFiles/dom.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69 "Finished codegen for target dom"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75 "Finished codegen for target dom"
 .PHONY : _deps/ftxui-build/CMakeFiles/dom.dir/codegen
 
 # clean rule for target.
@@ -436,7 +439,7 @@ _deps/cli11-build/src/CMakeFiles/CLI11.dir/clean:
 tests/CMakeFiles/test_types.dir/all:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_types.dir/build.make tests/CMakeFiles/test_types.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_types.dir/build.make tests/CMakeFiles/test_types.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=81,82,83 "Built target test_types"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=91,92,93 "Built target test_types"
 .PHONY : tests/CMakeFiles/test_types.dir/all
 
 # Build rule for subdir invocation for target.
@@ -453,7 +456,7 @@ test_types: tests/CMakeFiles/test_types.dir/rule
 # codegen rule for target.
 tests/CMakeFiles/test_types.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_types.dir/build.make tests/CMakeFiles/test_types.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=81,82,83 "Finished codegen for target test_types"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=91,92,93 "Finished codegen for target test_types"
 .PHONY : tests/CMakeFiles/test_types.dir/codegen
 
 # clean rule for target.
@@ -468,7 +471,7 @@ tests/CMakeFiles/test_types.dir/clean:
 tests/CMakeFiles/test_git_scanner_integration.dir/all:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_git_scanner_integration.dir/build.make tests/CMakeFiles/test_git_scanner_integration.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_git_scanner_integration.dir/build.make tests/CMakeFiles/test_git_scanner_integration.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=77,78,79,80 "Built target test_git_scanner_integration"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=87,88,89,90 "Built target test_git_scanner_integration"
 .PHONY : tests/CMakeFiles/test_git_scanner_integration.dir/all
 
 # Build rule for subdir invocation for target.
@@ -485,13 +488,45 @@ test_git_scanner_integration: tests/CMakeFiles/test_git_scanner_integration.dir/
 # codegen rule for target.
 tests/CMakeFiles/test_git_scanner_integration.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_git_scanner_integration.dir/build.make tests/CMakeFiles/test_git_scanner_integration.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=77,78,79,80 "Finished codegen for target test_git_scanner_integration"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=87,88,89,90 "Finished codegen for target test_git_scanner_integration"
 .PHONY : tests/CMakeFiles/test_git_scanner_integration.dir/codegen
 
 # clean rule for target.
 tests/CMakeFiles/test_git_scanner_integration.dir/clean:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_git_scanner_integration.dir/build.make tests/CMakeFiles/test_git_scanner_integration.dir/clean
 .PHONY : tests/CMakeFiles/test_git_scanner_integration.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/test_config.dir
+
+# All Build rule for target.
+tests/CMakeFiles/test_config.dir/all:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/depend
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=83,84,85,86 "Built target test_config"
+.PHONY : tests/CMakeFiles/test_config.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/test_config.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/demon/codespace/diffsync/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_config.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/demon/codespace/diffsync/build/CMakeFiles 0
+.PHONY : tests/CMakeFiles/test_config.dir/rule
+
+# Convenience name for target.
+test_config: tests/CMakeFiles/test_config.dir/rule
+.PHONY : test_config
+
+# codegen rule for target.
+tests/CMakeFiles/test_config.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/demon/codespace/diffsync/build/CMakeFiles --progress-num=83,84,85,86 "Finished codegen for target test_config"
+.PHONY : tests/CMakeFiles/test_config.dir/codegen
+
+# clean rule for target.
+tests/CMakeFiles/test_config.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_config.dir/build.make tests/CMakeFiles/test_config.dir/clean
+.PHONY : tests/CMakeFiles/test_config.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

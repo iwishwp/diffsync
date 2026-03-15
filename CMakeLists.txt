@@ -41,6 +41,7 @@ FetchContent_MakeAvailable(cli11)
 # Source files
 set(SOURCES
     src/main.cpp
+    src/types.cpp
 )
 
 # Header files

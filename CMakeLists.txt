@@ -42,11 +42,13 @@ FetchContent_MakeAvailable(cli11)
 set(SOURCES
     src/main.cpp
     src/types.cpp
+    src/core/git_scanner.cpp
 )
 
 # Header files
 set(HEADERS
     include/diffsync/types.hpp
+    include/diffsync/core/git_scanner.hpp
 )
 
 # Main executable

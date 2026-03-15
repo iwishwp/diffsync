@@ -61,6 +61,17 @@ void testConfigManager() {
 
         err = config.addProfile(badPort);
         assert(err && "addProfile with port=0 should fail");
+
+        // Test empty profile name validation
+        RemoteConfig emptyName;
+        emptyName.name = "";
+        emptyName.host = "host";
+        emptyName.user = "user";
+        emptyName.remotePath = "/path";
+        emptyName.port = 22;
+
+        err = config.addProfile(emptyName);
+        assert(err && "addProfile with empty name should fail");
     }
 
     // Test current profile
@@ -81,6 +92,10 @@ void testConfigManager() {
         err = config.setCurrentProfile("example");
         err = config.removeProfile("test");
         assert(!err && "removeProfile should succeed");
+
+        // Test removeProfile with non-existent profile
+        err = config.removeProfile("nonexistent");
+        assert(err && "removeProfile with non-existent profile should fail");
     }
 
     // Test malformed config handling

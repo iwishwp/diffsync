@@ -270,7 +270,9 @@ Error ConfigManager::save() {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
-    std::ofstream file(configPath_);
+    // Open file for writing (truncates existing content)
+    // Note: fd is kept open for locking, file is used for actual I/O
+    std::ofstream file(configPath_, std::ios::trunc);
     if (!file.is_open()) {
         flock(fd, LOCK_UN);
         close(fd);
@@ -331,6 +333,11 @@ std::optional<RemoteConfig> ConfigManager::getCurrentConfig() const {
 }
 
 Error ConfigManager::addProfile(const RemoteConfig& config) {
+    // Validate profile name is not empty
+    if (config.name.empty()) {
+        return Error(ErrorCode::ConfigCorrupted, "profile name cannot be empty");
+    }
+
     // Validate before adding
     if (!config.isValid()) {
         return Error(ErrorCode::ConfigCorrupted, "invalid config: missing required fields");
@@ -355,14 +362,15 @@ Error ConfigManager::removeProfile(const std::string& name) {
         return Error(ErrorCode::ConfigCorrupted, "cannot remove current profile");
     }
 
+    size_t oldSize = profiles_.size();
     auto it = std::remove_if(profiles_.begin(), profiles_.end(),
         [&name](const RemoteConfig& p) { return p.name == name; });
+    profiles_.erase(it, profiles_.end());
 
-    if (it == profiles_.end()) {
+    if (profiles_.size() == oldSize) {
         return Error(ErrorCode::ConfigCorrupted, "profile not found: " + name);
     }
 
-    profiles_.erase(it, profiles_.end());
     return Error();
 }
 

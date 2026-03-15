@@ -2,11 +2,50 @@
 #include <iostream>
 
 #ifdef BUILD_TUI
-// TUI mode will be implemented in a future chunk
+#include "diffsync/tui/main_screen.hpp"
+
 namespace diffsync {
 CliResult runTuiMode(const ConfigManager& config) {
-    std::cout << "TUI mode not yet implemented. Use --help for command line options.\n";
-    return CliResult::Ok;
+    // Create git scanner for current directory
+    GitScanner scanner;
+
+    // Check if we're in a git repo
+    if (!scanner.isGitRepo()) {
+        std::cerr << "Error: Not a git repository\n";
+        return CliResult::Error;
+    }
+
+    // Check if there are any changes
+    auto files = scanner.scan();
+    if (files.empty()) {
+        std::cout << "No changes detected in repository.\n";
+        return CliResult::Ok;
+    }
+
+    // Check if config exists
+    if (!config.getCurrentConfig()) {
+        std::cerr << "Error: No profile selected. Use 'diffsync config use <name>' or --profile option.\n";
+        return CliResult::Error;
+    }
+
+    // Launch TUI
+    MainScreen screen(const_cast<GitScanner&>(scanner), config);
+    SyncResult result = screen.run();
+
+    // Show summary after sync
+    if (result.totalFiles > 0) {
+        std::cout << "\nSync Summary:\n";
+        std::cout << "  Total: " << result.totalFiles << "\n";
+        std::cout << "  Success: " << result.successCount << "\n";
+        if (result.failedCount > 0) {
+            std::cout << "  Failed: " << result.failedCount << "\n";
+        }
+        if (result.skippedCount > 0) {
+            std::cout << "  Skipped: " << result.skippedCount << "\n";
+        }
+    }
+
+    return result.hasErrors() ? CliResult::Error : CliResult::Ok;
 }
 }
 #endif

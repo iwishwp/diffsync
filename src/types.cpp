@@ -1,6 +1,6 @@
 #include "diffsync/types.hpp"
 #include <sstream>
-#include <algorithm>
+#include <stdexcept>
 
 namespace diffsync {
 
@@ -20,8 +20,8 @@ FileStatus parseFileStatus(const std::string& statusStr) {
     if (statusStr == "A")  return FileStatus::Added;
     if (statusStr == "??") return FileStatus::Untracked;
     if (statusStr == "D")  return FileStatus::Deleted;
-    // Default for staged modifications
-    return FileStatus::Staged;
+    if (statusStr == "M ") return FileStatus::Staged;
+    throw std::invalid_argument("Unknown file status: " + statusStr);
 }
 
 std::string ChangeFile::statusString() const {

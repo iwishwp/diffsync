@@ -22,3 +22,16 @@ target_include_directories(test_git_scanner_integration PRIVATE
 )
 
 add_test(NAME test_git_scanner_integration COMMAND test_git_scanner_integration)
+
+# Config test
+add_executable(test_config
+    unit/test_config.cpp
+    ../src/types.cpp
+    ../src/core/config.cpp
+)
+
+target_include_directories(test_config PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/../include
+)
+
+add_test(NAME test_config COMMAND test_config)

@@ -43,12 +43,14 @@ set(SOURCES
     src/main.cpp
     src/types.cpp
     src/core/git_scanner.cpp
+    src/core/config.cpp
 )
 
 # Header files
 set(HEADERS
     include/diffsync/types.hpp
     include/diffsync/core/git_scanner.hpp
+    include/diffsync/core/config.hpp
 )
 
 # Main executable

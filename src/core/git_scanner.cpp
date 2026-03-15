@@ -8,10 +8,6 @@
 
 namespace diffsync {
 
-namespace {
-    constexpr const char* SHELL_SPECIAL_CHARS = " \t\n\r\"'`$\\&|;()<>";
-}
-
 std::string GitScanner::escapeShellArg(const std::string& arg) {
     // Single-quote escaping for POSIX shells
     std::string result = "'";
@@ -92,8 +88,8 @@ std::vector<ChangeFile> GitScanner::scan(const Options& options) {
     std::string escapedRoot = escapeShellArg(repoRoot_.string());
     std::string cdCmd = "cd " + escapedRoot;
 
-    // 1. Get unstaged and staged changes
-    std::string diffCmd = cdCmd + " && git diff HEAD --name-status";
+    // 1. Get unstaged changes only
+    std::string diffCmd = cdCmd + " && git diff --name-status";
     if (options.detectRenames) {
         diffCmd += " -M";
     }

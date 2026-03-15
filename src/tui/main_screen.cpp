@@ -63,6 +63,7 @@ SyncResult MainScreen::run() {
 
     // Build UI
     auto component = buildUI();
+
     component |= CatchEvent([&](Event event) {
         // Handle global shortcuts
         if (event == Event::Escape) {
@@ -90,8 +91,8 @@ ftxui::Component MainScreen::buildUI() {
     // Wrap with shortcuts
     auto withShortcuts = buildShortcuts(fileList);
 
-    // Create main renderer
-    auto renderer = Renderer(withShortcuts, [&] {
+    // Create main renderer - capture fileList by value to keep it alive
+    auto renderer = Renderer(withShortcuts, [fileList, this] {
         // Get selected count
         size_t selectedCount = fileList_->getSelectedCount();
         uint64_t selectedSize = fileList_->getSelectedSize();

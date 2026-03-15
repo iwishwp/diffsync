@@ -1,4 +1,4 @@
-test_types 18 0.000142437
-test_git_scanner_integration 13 0.00830901
-test_config 8 0.000286297
+test_types 20 0.000103819
+test_git_scanner_integration 15 0.00573866
+test_config 10 0.000246946
 ---

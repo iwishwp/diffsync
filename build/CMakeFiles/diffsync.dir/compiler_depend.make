@@ -6035,7 +6035,6 @@ CMakeFiles/diffsync.dir/src/main.cpp.o: /Users/demon/codespace/diffsync/src/main
   /Users/demon/codespace/diffsync/include/diffsync/cli/parser.hpp \
   /Users/demon/codespace/diffsync/include/diffsync/core/config.hpp \
   /Users/demon/codespace/diffsync/include/diffsync/core/git_scanner.hpp \
-  /Users/demon/codespace/diffsync/include/diffsync/core/rsync.hpp \
   /Users/demon/codespace/diffsync/include/diffsync/tui/file_list.hpp \
   /Users/demon/codespace/diffsync/include/diffsync/tui/main_screen.hpp \
   /Users/demon/codespace/diffsync/include/diffsync/types.hpp

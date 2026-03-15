@@ -29,24 +29,26 @@ std::string formatBytes(uint64_t size) {
 
 FileList::FileList(const std::vector<ChangeFile>& files)
     : files_(files) {
+    updateEntries();
 }
 
-ftxui::Component FileList::operator()() {
-    using namespace ftxui;
-
-    // Build menu entries
-    std::vector<std::string> entries;
+void FileList::updateEntries() {
+    entries_.clear();
     for (const auto& file : files_) {
         std::ostringstream oss;
         oss << (file.selected ? "[x]" : "[ ]") << " "
             << getStatusDisplay(file.status) << " "
             << std::setw(10) << formatSize(file.size) << "  "
             << file.path.string();
-        entries.push_back(oss.str());
+        entries_.push_back(oss.str());
     }
+}
 
-    // Create menu with custom style
-    auto menu = Menu(&entries, &focusedIndex_);
+ftxui::Component FileList::operator()() {
+    using namespace ftxui;
+
+    // Create menu with custom style - entries_ is a member variable
+    auto menu = Menu(&entries_, &focusedIndex_);
 
     // Handle keyboard input
     menu |= CatchEvent([this](Event event) {
@@ -63,6 +65,7 @@ ftxui::Component FileList::operator()() {
 void FileList::updateFiles(const std::vector<ChangeFile>& files) {
     files_ = files;
     focusedIndex_ = 0;
+    updateEntries();
 }
 
 void FileList::toggleSelection() {
@@ -71,6 +74,7 @@ void FileList::toggleSelection() {
     size_t index = static_cast<size_t>(focusedIndex_);
     if (index < files_.size()) {
         files_[index].selected = !files_[index].selected;
+        updateEntries();  // Update display entries
         notifyChange();
     }
 }
@@ -79,6 +83,7 @@ void FileList::selectAll() {
     for (auto& file : files_) {
         file.selected = true;
     }
+    updateEntries();  // Update display entries
     notifyChange();
 }
 
@@ -86,6 +91,7 @@ void FileList::unselectAll() {
     for (auto& file : files_) {
         file.selected = false;
     }
+    updateEntries();  // Update display entries
     notifyChange();
 }
 

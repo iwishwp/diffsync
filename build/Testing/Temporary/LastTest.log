@@ -1,10 +1,10 @@
-Start testing: Mar 15 13:02 CST
+Start testing: Mar 15 13:55 CST
 ----------------------------------------------------------
 1/3 Testing: test_types
 1/3 Test: test_types
 Command: "/Users/demon/codespace/diffsync/build/tests/test_types"
 Directory: /Users/demon/codespace/diffsync/build/tests
-"test_types" start time: Mar 15 13:02 CST
+"test_types" start time: Mar 15 13:55 CST
 Output:
 ----------------------------------------------------------
 FileStatus tests passed
@@ -17,7 +17,7 @@ All tests passed!
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"test_types" end time: Mar 15 13:02 CST
+"test_types" end time: Mar 15 13:55 CST
 "test_types" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -25,44 +25,25 @@ Test Passed.
 2/3 Test: test_git_scanner_integration
 Command: "/Users/demon/codespace/diffsync/build/tests/test_git_scanner_integration"
 Directory: /Users/demon/codespace/diffsync/build/tests
-"test_git_scanner_integration" start time: Mar 15 13:02 CST
+"test_git_scanner_integration" start time: Mar 15 13:55 CST
 Output:
 ----------------------------------------------------------
 Repo root: "/Users/demon/codespace/diffsync"
-Found 28 changed files
-  M ".cache/clangd/index/git_scanner.hpp.A11F14AFB52560ED.idx" (1972 bytes)
-  M "build/CMakeFiles/Makefile.cmake" (5959 bytes)
-  M "build/CMakeFiles/Makefile2" (25448 bytes)
-  M "build/CMakeFiles/TargetDirectories.txt" (7365 bytes)
-  M "build/CMakeFiles/diffsync.dir/DependInfo.cmake" (1521 bytes)
-  M "build/CMakeFiles/diffsync.dir/build.make" (12818 bytes)
-  M "build/CMakeFiles/diffsync.dir/cmake_clean.cmake" (803 bytes)
-  M "build/CMakeFiles/diffsync.dir/compiler_depend.internal" (558194 bytes)
-  M "build/CMakeFiles/diffsync.dir/compiler_depend.make" (672557 bytes)
-  M "build/CMakeFiles/diffsync.dir/link.txt" (510 bytes)
-  M "build/CMakeFiles/diffsync.dir/progress.make" (155 bytes)
-  M "build/CMakeFiles/diffsync.dir/src/main.cpp.o" (2626088 bytes)
-  M "build/CMakeFiles/diffsync.dir/src/main.cpp.o.d" (97392 bytes)
-  M "build/CMakeFiles/progress.marks" (3 bytes)
-  M "build/Makefile" (16255 bytes)
-  M "build/Testing/Temporary/CTestCostData.txt" (98 bytes)
-  M "build/Testing/Temporary/LastTest.log" (3993 bytes)
-  M "build/Testing/Temporary/LastTestsFailed.log" (14 bytes)
-  M "build/_deps/ftxui-build/CMakeFiles/dom.dir/progress.make" (912 bytes)
-  M "build/_deps/ftxui-build/CMakeFiles/screen.dir/progress.make" (155 bytes)
-  M "build/compile_commands.json" (48185 bytes)
-  M "build/diffsync" (3047176 bytes)
-  M "build/tests/CMakeFiles/progress.marks" (3 bytes)
-  M "build/tests/CMakeFiles/test_git_scanner_integration.dir/progress.make" (89 bytes)
-  M "build/tests/CMakeFiles/test_types.dir/progress.make" (67 bytes)
-  M "build/tests/CTestTestfile.cmake" (1181 bytes)
-  M "build/tests/Makefile" (18113 bytes)
-  M "build/tests/test_git_scanner_integration" (213232 bytes)
+Found 9 changed files
+  M "build/CMakeFiles/diffsync.dir/compiler_depend.internal" (848254 bytes)
+  M "build/CMakeFiles/diffsync.dir/compiler_depend.make" (971029 bytes)
+  M "build/CMakeFiles/diffsync.dir/src/main.cpp.o" (2791336 bytes)
+  M "build/diffsync" (7261144 bytes)
+  M "include/diffsync/tui/file_list.hpp" (2590 bytes)
+  M "src/tui/file_list.cpp" (3936 bytes)
+  M "src/tui/main_screen.cpp" (7928 bytes)
+  M "build/Testing/Temporary/CTestCostData.txt" (93 bytes)
+  M "build/Testing/Temporary/LastTest.log" (2106 bytes)
 <end of output>
-Test time =   0.11 sec
+Test time =   0.09 sec
 ----------------------------------------------------------
 Test Passed.
-"test_git_scanner_integration" end time: Mar 15 13:02 CST
+"test_git_scanner_integration" end time: Mar 15 13:55 CST
 "test_git_scanner_integration" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -70,7 +51,7 @@ Test Passed.
 3/3 Test: test_config
 Command: "/Users/demon/codespace/diffsync/build/tests/test_config"
 Directory: /Users/demon/codespace/diffsync/build/tests
-"test_config" start time: Mar 15 13:02 CST
+"test_config" start time: Mar 15 13:55 CST
 Output:
 ----------------------------------------------------------
 Warning: Config file has open permissions. Consider running: chmod 600 "/tmp/bad_config.toml"
@@ -79,8 +60,8 @@ ConfigManager tests passed
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"test_config" end time: Mar 15 13:02 CST
+"test_config" end time: Mar 15 13:55 CST
 "test_config" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Mar 15 13:02 CST
+End testing: Mar 15 13:55 CST

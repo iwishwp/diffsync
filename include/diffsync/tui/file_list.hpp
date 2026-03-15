@@ -4,7 +4,6 @@
 #include <ftxui/component/component.hpp>
 #include <vector>
 #include <functional>
-#include <memory>
 
 namespace diffsync {
 
@@ -99,8 +98,14 @@ public:
 
 private:
     std::vector<ChangeFile> files_;
+    std::vector<std::string> entries_;  // Display entries for Menu component
     int focusedIndex_ = 0;
     OnChangeCallback onChangeCallback_;
+
+    /**
+     * Update display entries when file selection changes
+     */
+    void updateEntries();
 
     /**
      * Notify callback of changes

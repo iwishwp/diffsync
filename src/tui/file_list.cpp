@@ -36,7 +36,7 @@ void FileList::updateEntries() {
     entries_.clear();
     for (const auto& file : files_) {
         std::ostringstream oss;
-        oss << (file.selected ? "[x]" : "[ ]") << " "
+        oss << (file.selected ? "*" : " ") << " "
             << getStatusDisplay(file.status) << " "
             << std::setw(10) << formatSize(file.size) << "  "
             << file.path.string();

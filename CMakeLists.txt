@@ -44,6 +44,8 @@ set(SOURCES
     src/types.cpp
     src/core/git_scanner.cpp
     src/core/config.cpp
+    src/cli/parser.cpp
+    src/cli/commands.cpp
 )
 
 # Header files
@@ -51,6 +53,7 @@ set(HEADERS
     include/diffsync/types.hpp
     include/diffsync/core/git_scanner.hpp
     include/diffsync/core/config.hpp
+    include/diffsync/cli/parser.hpp
 )
 
 # Main executable

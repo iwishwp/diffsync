@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/demon/codespace/diffsync/build/_deps/tomlplusplus-subbuild/CMakeFiles/tomlplusplus-populate"
+		},
+		{
+			"file" : "/Users/demon/codespace/diffsync/build/_deps/tomlplusplus-subbuild/CMakeFiles/tomlplusplus-populate.rule"
+		},
+		{
+			"file" : "/Users/demon/codespace/diffsync/build/_deps/tomlplusplus-subbuild/CMakeFiles/tomlplusplus-populate-complete.rule"
+		},
+		{
+			"file" : "/Users/demon/codespace/diffsync/build/_deps/tomlplusplus-subbuild/tomlplusplus-populate-prefix/src/tomlplusplus-populate-stamp/tomlplusplus-populate-build.rule"
+		},
+		{
+			"file" : "/Users/demon/codespace/diffsync/build/_deps/tomlplusplus-subbuild/tomlplusplus-populate-prefix/src/tomlplusplus-populate-stamp/tomlplusplus-populate-configure.rule"
+		},
+		{
+			"file" : "/Users/demon/codespace/diffsync/build/_deps/tomlplusplus-subbuild/tomlplusplus-populate-prefix/src/tomlplusplus-populate-stamp/tomlplusplus-populate-download.rule"
+		},
+		{
+			"file" : "/Users/demon/codespace/diffsync/build/_deps/tomlplusplus-subbuild/tomlplusplus-populate-prefix/src/tomlplusplus-populate-stamp/tomlplusplus-populate-install.rule"
+		},
+		{
+			"file" : "/Users/demon/codespace/diffsync/build/_deps/tomlplusplus-subbuild/tomlplusplus-populate-prefix/src/tomlplusplus-populate-stamp/tomlplusplus-populate-mkdir.rule"
+		},
+		{
+			"file" : "/Users/demon/codespace/diffsync/build/_deps/tomlplusplus-subbuild/tomlplusplus-populate-prefix/src/tomlplusplus-populate-stamp/tomlplusplus-populate-patch.rule"
+		},
+		{
+			"file" : "/Users/demon/codespace/diffsync/build/_deps/tomlplusplus-subbuild/tomlplusplus-populate-prefix/src/tomlplusplus-populate-stamp/tomlplusplus-populate-test.rule"
+		},
+		{
+			"file" : "/Users/demon/codespace/diffsync/build/_deps/tomlplusplus-subbuild/tomlplusplus-populate-prefix/src/tomlplusplus-populate-stamp/tomlplusplus-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"tomlplusplus-populate"
+		],
+		"name" : "tomlplusplus-populate"
+	}
+}

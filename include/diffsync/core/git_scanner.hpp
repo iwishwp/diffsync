@@ -11,7 +11,7 @@ namespace diffsync {
  * GitDiffScanner - Scans git repository for changed files
  *
  * Uses shell git commands to detect:
- * - Unstaged modifications (git diff HEAD --name-status)
+ * - Unstaged modifications (git diff --name-status)
  * - Staged modifications (git diff --cached --name-status)
  * - Untracked files (git ls-files --others --exclude-standard)
  */

@@ -10,6 +10,7 @@
 #include <mutex>
 #include <atomic>
 #include <chrono>
+#include <unordered_set>
 
 namespace diffsync {
 
@@ -312,7 +313,9 @@ ftxui::Component MainScreen::buildSyncModal() {
             }
 
             content.push_back(text(""));
-            if (transferLog_.hasFailures()) {
+
+            // Show "Press [L] to view log" if there are any failures
+            if (syncResult_.failedCount > 0) {
                 content.push_back(text("Press [Esc] to close | [L] to view log") | dim | center);
             } else {
                 content.push_back(text("Press [Esc] to close") | dim | center);
@@ -495,8 +498,22 @@ void MainScreen::startSync() {
                 progressCallback
             );
 
+            // Ensure all files are logged - mark unlogged files as failed
             {
                 std::lock_guard<std::mutex> lock(syncMutex_);
+                std::unordered_set<std::string> loggedFiles;
+                for (const auto& entry : transferLog_.getEntries()) {
+                    loggedFiles.insert(entry.filename);
+                }
+                for (const auto& file : selectedFiles) {
+                    std::string filename = file.path.string();
+                    if (loggedFiles.find(filename) == loggedFiles.end()) {
+                        // File was not logged - mark as failed
+                        transferLog_.logFile(filename, TransferStatus::Failed,
+                            syncResult_.hasErrors() ? syncResult_.errors[0] : "Transfer failed");
+                    }
+                }
+
                 syncProgress_ = 100;  // Force progress to 100% BEFORE marking complete
                 syncComplete_ = true;
                 syncing_ = false;

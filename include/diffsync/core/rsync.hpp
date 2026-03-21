@@ -33,6 +33,7 @@ public:
         std::string identityFile;
         int timeout = 30;  // seconds
         bool showProgress = true;    // Show progress updates
+        std::function<void(const std::string& filename, TransferStatus status, const std::string& error)> fileCallback;
     };
 
     /**
@@ -62,7 +63,7 @@ public:
      * @param localPath Local repository root
      * @param remoteConfig Remote configuration
      * @param options Rsync options
-     * @param progressCallback Callback for progress updates (optional)
+     * @param progressCallback Callback for progress updates (optional, called in real-time)
      * @return Sync result
      */
     SyncResult execute(
@@ -132,6 +133,12 @@ private:
      * Parse rsync version string to get major.minor version
      */
     static std::pair<int, int> parseRsyncVersion(const std::string& versionOutput);
+
+    /**
+     * Parse rsync verbose output to extract file status
+     * Returns pair<filename, status> or {"", TransferStatus::Skipped} if not a file line
+     */
+    std::pair<std::string, TransferStatus> parseVerboseLine(const std::string& line);
 };
 
 } // namespace diffsync

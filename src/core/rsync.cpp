@@ -43,6 +43,49 @@ std::pair<int, int> RsyncExecutor::parseRsyncVersion(const std::string& versionO
     return {0, 0};
 }
 
+std::pair<std::string, TransferStatus> RsyncExecutor::parseVerboseLine(const std::string& line) {
+    // rsync verbose format examples:
+    // "file.txt"              - new file
+    // ">f+++++++++ file.txt"   - file created
+    // "*.f............ file.txt" - file matches (skip)
+    // "cd+++++++++ dirname/"   - directory created
+    // "sender file not found: file.txt" - error
+
+    // Skip directory lines
+    if (line.find("/$") != std::string::npos || line.find("+++++++++ ") == std::string::npos) {
+        return {"", TransferStatus::Skipped};
+    }
+
+    // Check for error patterns
+    if (line.find("sender file not found:") != std::string::npos ||
+        line.find("failed:") != std::string::npos ||
+        line.find("permission denied") != std::string::npos) {
+        // Extract filename from error
+        size_t pos = line.find_last_of(' ');
+        if (pos != std::string::npos) {
+            return {line.substr(pos + 1), TransferStatus::Failed};
+        }
+        return {"", TransferStatus::Failed};
+    }
+
+    // Look for file transfer indicators
+    // Format: "*c+++++++++ filename" or ">f+++++++++ filename"
+    size_t filePos = line.find_last_of(' ');
+    if (filePos != std::string::npos && filePos < line.length() - 1) {
+        std::string filename = line.substr(filePos + 1);
+        // Check if it's a file transfer (starts with >f or *f)
+        if (line.find(">f") != std::string::npos || line.find("*f") != std::string::npos) {
+            // Check if it was actually sent (not skipped with *)
+            if (line.find("*f") == 0) {
+                return {filename, TransferStatus::Skipped};  // Already exists
+            }
+            return {filename, TransferStatus::Success};
+        }
+    }
+
+    return {"", TransferStatus::Skipped};
+}
+
 Error RsyncExecutor::checkRsyncAvailable() {
     // Check if rsync command exists
     std::string cmd = "rsync --version 2>&1";
@@ -105,6 +148,13 @@ std::string RsyncExecutor::buildRsyncCommand(
 ) {
     std::ostringstream cmd;
 
+    // Use sshpass if password is provided (non-interactive)
+    // WARNING: Password will be visible in process list!
+    if (!remoteConfig.password.empty()) {
+        std::string escapedPassword = escapeShellArg(remoteConfig.password);
+        cmd << "sshpass -p " << escapedPassword << " ";
+    }
+
     // Base rsync command
     cmd << "rsync -av";
 
@@ -114,8 +164,9 @@ std::string RsyncExecutor::buildRsyncCommand(
     }
 
     // Progress info (requires rsync >= 3.1.0)
+    // Use both --progress and --info=progress2 for detailed progress
     if (options.showProgress) {
-        cmd << " --info=progress2";
+        cmd << " --progress --info=progress2";
     }
 
     // Dry run
@@ -128,35 +179,26 @@ std::string RsyncExecutor::buildRsyncCommand(
         cmd << " --verbose";
     }
 
-    // Include patterns
-    for (const auto& file : files) {
-        // Escape the path for shell safety
-        std::string escapedPath = escapeShellArg(file.path.string());
-        cmd << " --include=" << escapedPath;
-    }
-
-    // Exclude everything else (only sync included files)
-    cmd << " --exclude='*'";
-
     // SSH options
     std::string sshCmd = "ssh";
-    if (options.sshPort != 22) {
-        sshCmd += " -p " + std::to_string(options.sshPort);
+    if (remoteConfig.port != 22) {
+        sshCmd += " -p " + std::to_string(remoteConfig.port);
     }
-    if (!options.identityFile.empty()) {
-        std::string escapedKey = escapeShellArg(options.identityFile);
+    if (!remoteConfig.identityFile.empty()) {
+        std::string escapedKey = escapeShellArg(remoteConfig.identityFile);
         sshCmd += " -i " + escapedKey;
     }
 
     std::string escapedSshCmd = escapeShellArg(sshCmd);
     cmd << " -e " << escapedSshCmd;
 
-    // Source path (must end with / for rsync)
-    std::string escapedLocalPath = escapeShellArg(localPath.string());
-    if (escapedLocalPath.back() != '/') {
-        escapedLocalPath += "/";
+    // Add source files directly (not using include/exclude patterns)
+    // Each file is a separate source argument
+    for (const auto& file : files) {
+        std::string fullPath = (localPath / file.path).string();
+        std::string escapedPath = escapeShellArg(fullPath);
+        cmd << " " << escapedPath;
     }
-    cmd << " " << escapedLocalPath;
 
     // Destination
     std::string dest = remoteConfig.user + "@" + remoteConfig.host + ":" + remoteConfig.remotePath + "/";
@@ -169,7 +211,37 @@ std::string RsyncExecutor::buildRsyncCommand(
 RsyncExecutor::Progress RsyncExecutor::parseProgress(const std::string& line) {
     Progress progress;
 
-    // Parse rsync progress2 format:
+    // Remove leading carriage returns and whitespace
+    // rsync progress lines often start with \r for overwriting
+    std::string cleanedLine = line;
+    size_t start = 0;
+    while (start < cleanedLine.size() && (cleanedLine[start] == '\r' || cleanedLine[start] == ' ')) {
+        start++;
+    }
+    if (start > 0) {
+        cleanedLine = cleanedLine.substr(start);
+    }
+
+    // Try to parse (xfr#N, to-chk=M/T) pattern first (part of progress2 output)
+    std::regex xfrRegex(R"(\(xfr#(\d+),\s*to-chk=(\d+)/(\d+)\))");
+    std::smatch xfrMatch;
+    if (std::regex_search(cleanedLine, xfrMatch, xfrRegex) && xfrMatch.size() >= 4) {
+        try {
+            progress.filesTransferred = std::stoi(xfrMatch[1].str());
+            int toCheck = std::stoi(xfrMatch[2].str());
+            int total = std::stoi(xfrMatch[3].str());
+            progress.filesRemaining = toCheck;
+
+            // Calculate percentage from file count
+            if (total > 0) {
+                progress.percent = (progress.filesTransferred * 100) / total;
+            }
+        } catch (...) {
+            // If parsing fails, continue to try full progress2 format
+        }
+    }
+
+    // Parse full rsync progress2 format:
     // "12,345  25%   10.23MB/s    0:00:03  (xfr#4, to-chk=8/20)"
     // or simpler: "1,234,567  50%   5.23MB/s    0:00:05"
 
@@ -177,14 +249,14 @@ RsyncExecutor::Progress RsyncExecutor::parseProgress(const std::string& line) {
     std::regex progressRegex(pattern);
 
     std::smatch match;
-    if (std::regex_search(line, match, progressRegex) && match.size() >= 6) {
+    if (std::regex_search(cleanedLine, match, progressRegex) && match.size() >= 6) {
         try {
             // Parse bytes transferred (remove commas)
             std::string bytesStr = match[1].str();
             bytesStr.erase(std::remove(bytesStr.begin(), bytesStr.end(), ','), bytesStr.end());
             progress.bytesTransferred = std::stoull(bytesStr);
 
-            // Parse percentage
+            // Parse percentage (overrides file count calculation)
             progress.percent = std::stoi(match[2].str());
 
             // Parse speed (convert to MB/s)
@@ -211,7 +283,7 @@ RsyncExecutor::Progress RsyncExecutor::parseProgress(const std::string& line) {
                 progress.filesRemaining = toCheck;
             }
         } catch (...) {
-            // If parsing fails, return default progress
+            // If parsing fails, return default progress (may have xfr info from above)
         }
     }
 
@@ -237,14 +309,14 @@ RsyncExecutor::ExecResult RsyncExecutor::executeCommand(const std::string& cmd) 
         return result;
     }
 
-    // Read output
+    // Read output line by line
     while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
         stdoutStr += buffer.data();
 
         // Check for timeout
         auto now = std::chrono::steady_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(now - start).count();
-        if (elapsed > 30) {  // 30 second timeout
+        if (elapsed > 300) {  // 5 minute timeout (was 30s, too short for large files)
             break;
         }
     }
@@ -285,56 +357,88 @@ SyncResult RsyncExecutor::execute(
         return result;
     }
 
+    // Check sshpass availability if password is provided
+    if (!remoteConfig.password.empty()) {
+        std::string sshpassCmd = "sshpass -V 2>&1";
+        std::array<char, 256> buffer;
+        std::string sshpassOutput;
+
+        std::unique_ptr<FILE, decltype(&pclose)> pipe(
+            popen(sshpassCmd.c_str(), "r"), pclose);
+
+        if (!pipe || fgets(buffer.data(), buffer.size(), pipe.get()) == nullptr) {
+            result.errors.push_back("Password is configured but sshpass is not installed. "
+                                    "Install sshpass or use SSH key authentication instead.");
+            return result;
+        }
+    }
+
     // Build command
     std::string cmd = buildRsyncCommand(files, localPath, remoteConfig, options);
 
-    if (options.verbose || options.dryRun) {
-        std::cout << "Command: " << cmd << "\n";
+    // Redirect stderr to stdout so we can capture error messages
+    cmd += " 2>&1";
+
+    // Execute and read output in real-time
+    std::array<char, 4096> buffer;
+    std::string stdoutStr;
+
+    std::unique_ptr<FILE, decltype(&pclose)> pipe(
+        popen(cmd.c_str(), "r"), pclose);
+
+    if (!pipe) {
+        result.errors.push_back("Failed to execute rsync command");
+        result.failedCount = static_cast<int>(files.size());
+        return result;
     }
 
-    // Execute
-    ExecResult execResult = executeCommand(cmd);
+    // Read output line by line in real-time
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+        std::string line(buffer.data());
+        stdoutStr += line;
 
-    if (options.verbose) {
-        std::cout << "Exit code: " << execResult.exitCode << "\n";
-        if (!execResult.stdout.empty()) {
-            std::cout << "Output:\n" << execResult.stdout << "\n";
+        // Parse file status from verbose output
+        auto [filename, status] = parseVerboseLine(line);
+        if (!filename.empty() && options.fileCallback) {
+            std::string error;
+            if (status == TransferStatus::Failed) {
+                error = line;  // Full line contains error details
+            }
+            options.fileCallback(filename, status, error);
         }
-        if (!execResult.stderr.empty()) {
-            std::cout << "Errors:\n" << execResult.stderr << "\n";
-        }
-    }
 
-    // Parse progress if callback provided
-    if (progressCallback && options.showProgress) {
-        std::istringstream stream(execResult.stdout);
-        std::string line;
-
-        while (std::getline(stream, line)) {
-            if (!line.empty()) {
-                Progress progress = parseProgress(line);
-                if (progress.percent > 0) {
-                    progressCallback(progress);
-                }
+        // Parse progress in real-time if callback provided
+        if (progressCallback && options.showProgress) {
+            Progress progress = parseProgress(line);
+            if (progress.percent > 0 || progress.filesTransferred > 0) {
+                progressCallback(progress);
             }
         }
     }
 
+    // Get exit code
+    int exitCode = pclose(pipe.release());
+    int actualExitCode = WEXITSTATUS(exitCode);
+
     // Process results
     result.totalFiles = static_cast<int>(files.size());
 
-    if (execResult.exitCode == 0) {
+    if (actualExitCode == 0) {
         result.successCount = result.totalFiles;
     } else {
         result.failedCount = result.totalFiles;
-        result.errors.push_back("rsync failed with exit code " + std::to_string(execResult.exitCode));
-        if (!execResult.stderr.empty()) {
-            result.errors.push_back(execResult.stderr);
-        }
-    }
 
-    if (options.dryRun) {
-        std::cout << "[Dry-run complete - no files actually transferred]\n";
+        // Add exit code error
+        std::string exitCodeMsg = "rsync failed with exit code " + std::to_string(actualExitCode);
+        if (actualExitCode == 255) {
+            exitCodeMsg += " (SSH connection failed or rsync error)";
+        }
+        result.errors.push_back(exitCodeMsg);
+
+        // Add output/stderr as error details (stderr is now redirected to stdout)
+        if (!stdoutStr.empty()) {
+            result.errors.push_back(stdoutStr);
+        }
     }
 
     return result;

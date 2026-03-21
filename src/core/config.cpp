@@ -201,6 +201,7 @@ Error ConfigManager::load() {
                 else if (key == "user") currentProfile.user = value;
                 else if (key == "remote_path") currentProfile.remotePath = value;
                 else if (key == "identity_file") currentProfile.identityFile = expandTilde(value);
+                else if (key == "password") currentProfile.password = value;
                 else if (key == "port") {
                     auto port = parsePort(value);
                     if (port) currentProfile.port = *port;
@@ -297,6 +298,11 @@ Error ConfigManager::save() {
         file << "port = " << profile.port << "\n";
         if (!profile.identityFile.empty()) {
             file << "identity_file = \"" << profile.identityFile << "\"\n";
+        }
+        // SECURITY WARNING: Password is stored in plain text!
+        // Use SSH keys instead for better security.
+        if (!profile.password.empty()) {
+            file << "password = \"" << profile.password << "\"\n";
         }
         file << "\n";
     }

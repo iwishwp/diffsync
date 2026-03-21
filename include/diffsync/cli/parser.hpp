@@ -54,7 +54,7 @@ public:
     /**
      * Callback type for TUI mode
      */
-    using TuiCallback = std::function<CliResult(const ConfigManager&)>;
+    using TuiCallback = std::function<CliResult(ConfigManager&)>;
 
     /**
      * Create parser with optional TUI callback

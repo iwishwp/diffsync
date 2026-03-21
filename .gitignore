@@ -30,6 +30,10 @@ Makefile
 .cache/
 *.idx
 
+# Testing
+Testing/Temporary/
+Testing/CTestCostData.txt
+
 # OS
 .DS_Store
 Thumbs.db

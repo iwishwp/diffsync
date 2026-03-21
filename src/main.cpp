@@ -5,7 +5,7 @@
 #include "diffsync/tui/main_screen.hpp"
 
 namespace diffsync {
-CliResult runTuiMode(const ConfigManager& config) {
+CliResult runTuiMode(ConfigManager& config) {
     // Create git scanner for current directory
     GitScanner scanner;
 
@@ -22,14 +22,8 @@ CliResult runTuiMode(const ConfigManager& config) {
         return CliResult::Ok;
     }
 
-    // Check if config exists
-    if (!config.getCurrentConfig()) {
-        std::cerr << "Error: No profile selected. Use 'diffsync config use <name>' or --profile option.\n";
-        return CliResult::Error;
-    }
-
-    // Launch TUI
-    MainScreen screen(const_cast<GitScanner&>(scanner), config);
+    // Launch TUI (config modal allows selecting profile)
+    MainScreen screen(scanner, config);
     SyncResult result = screen.run();
 
     // Show summary after sync
@@ -54,7 +48,7 @@ int main(int argc, char* argv[]) {
     using namespace diffsync;
 
     // Create CLI parser with TUI callback
-    CLIParser parser([](const ConfigManager& config) -> CliResult {
+    CLIParser parser([](ConfigManager& config) -> CliResult {
 #ifdef BUILD_TUI
         return runTuiMode(config);
 #else

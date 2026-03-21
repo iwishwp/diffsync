@@ -45,6 +45,7 @@ set(SOURCES
     src/core/git_scanner.cpp
     src/core/config.cpp
     src/core/rsync.cpp
+    src/core/transfer_log.cpp
     src/cli/parser.cpp
     src/cli/commands.cpp
 )
@@ -53,6 +54,7 @@ set(SOURCES
 if(BUILD_TUI)
     list(APPEND SOURCES
         src/tui/file_list.cpp
+        src/tui/config_modal.cpp
         src/tui/main_screen.cpp
     )
 endif()
@@ -63,6 +65,7 @@ set(HEADERS
     include/diffsync/core/git_scanner.hpp
     include/diffsync/core/config.hpp
     include/diffsync/core/rsync.hpp
+    include/diffsync/core/transfer_log.hpp
     include/diffsync/cli/parser.hpp
 )
 
@@ -70,6 +73,7 @@ set(HEADERS
 if(BUILD_TUI)
     list(APPEND HEADERS
         include/diffsync/tui/file_list.hpp
+        include/diffsync/tui/config_modal.hpp
         include/diffsync/tui/main_screen.hpp
     )
 endif()

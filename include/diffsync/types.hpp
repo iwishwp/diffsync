@@ -16,6 +16,24 @@ enum class FileStatus {
     Deleted      // D - Deleted (for reference, not synced)
 };
 
+// Transfer status (separate from git FileStatus)
+enum class TransferStatus {
+    Success,   // File transferred successfully
+    Failed,    // File transfer failed
+    Skipped    // File was skipped (already up-to-date)
+};
+
+// Single file transfer result
+struct FileTransferLog {
+    std::string filename;           // File path relative to repo root
+    TransferStatus status;
+    std::string errorMessage;       // Error message if status == Failed
+
+    FileTransferLog() : status(TransferStatus::Success) {}
+    FileTransferLog(const std::string& name, TransferStatus s, const std::string& err = "")
+        : filename(name), status(s), errorMessage(err) {}
+};
+
 // Convert FileStatus to string representation
 std::string toString(FileStatus status);
 FileStatus parseFileStatus(const std::string& statusStr);
@@ -38,6 +56,7 @@ struct RemoteConfig {
     std::string user;           // Username
     std::string remotePath;     // Remote root directory
     std::string identityFile;   // SSH private key path (optional)
+    std::string password;       // SSH password (NOT RECOMMENDED - use key instead)
     uint16_t port = 22;         // SSH port
 
     // Validate config fields
@@ -53,7 +72,11 @@ struct SyncResult {
     int skippedCount = 0;
     std::vector<std::string> errors;
 
+    // Detailed file-level results
+    std::vector<FileTransferLog> fileResults;
+
     bool hasErrors() const { return !errors.empty(); }
+    bool hasFailures() const { return failedCount > 0; }  // Check if any files failed to transfer
 };
 
 // Error codes

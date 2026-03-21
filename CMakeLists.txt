@@ -55,6 +55,7 @@ if(BUILD_TUI)
     list(APPEND SOURCES
         src/tui/file_list.cpp
         src/tui/config_modal.cpp
+        src/tui/log_modal.cpp
         src/tui/main_screen.cpp
     )
 endif()
@@ -74,6 +75,7 @@ if(BUILD_TUI)
     list(APPEND HEADERS
         include/diffsync/tui/file_list.hpp
         include/diffsync/tui/config_modal.hpp
+        include/diffsync/tui/log_modal.hpp
         include/diffsync/tui/main_screen.hpp
     )
 endif()

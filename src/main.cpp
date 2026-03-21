@@ -26,19 +26,6 @@ CliResult runTuiMode(ConfigManager& config) {
     MainScreen screen(scanner, config);
     SyncResult result = screen.run();
 
-    // Show summary after sync
-    if (result.totalFiles > 0) {
-        std::cout << "\nSync Summary:\n";
-        std::cout << "  Total: " << result.totalFiles << "\n";
-        std::cout << "  Success: " << result.successCount << "\n";
-        if (result.failedCount > 0) {
-            std::cout << "  Failed: " << result.failedCount << "\n";
-        }
-        if (result.skippedCount > 0) {
-            std::cout << "  Skipped: " << result.skippedCount << "\n";
-        }
-    }
-
     return result.hasErrors() ? CliResult::Error : CliResult::Ok;
 }
 }

@@ -16,7 +16,10 @@ ConfigModal::ConfigModal(ConfigManager& config)
     inputPath_ = ftxui::Input(&editPath_, "/remote/path");
     inputPort_ = ftxui::Input(&editPort_, "22 (optional)");
     inputKey_  = ftxui::Input(&editKey_,  "/path/to/key (optional)");
-    inputPassword_ = ftxui::Input(&editPassword_, "password (NOT RECOMMENDED, use key)");
+    // Password input with hidden characters
+    ftxui::InputOption passwordOption;
+    passwordOption.password = true;
+    inputPassword_ = ftxui::Input(&editPassword_, "password (NOT RECOMMENDED)", passwordOption);
 
     // Build edit container
     editContainer_ = ftxui::Container::Vertical({

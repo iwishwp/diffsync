@@ -35,3 +35,16 @@ target_include_directories(test_config PRIVATE
 )
 
 add_test(NAME test_config COMMAND test_config)
+
+# Transfer log test
+add_executable(test_transfer_log
+    unit/test_transfer_log.cpp
+    ../src/types.cpp
+    ../src/core/transfer_log.cpp
+)
+
+target_include_directories(test_transfer_log PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/../include
+)
+
+add_test(NAME test_transfer_log COMMAND test_transfer_log)

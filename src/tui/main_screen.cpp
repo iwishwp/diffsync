@@ -240,6 +240,7 @@ ftxui::Component MainScreen::buildHelpModal() {
         content.push_back(text("  <F2>           - Select all / Unselect all"));
         content.push_back(text("  <C>            - Open configuration"));
         content.push_back(text("  <Enter>        - Sync selected files"));
+        content.push_back(text("  <L>            - View transfer log"));
         content.push_back(text("  <?>            - Show this help"));
         content.push_back(text("  <Esc>          - Quit / Close dialog"));
         content.push_back(text(""));
@@ -250,6 +251,12 @@ ftxui::Component MainScreen::buildHelpModal() {
         content.push_back(text("  <E>            - Edit selected profile"));
         content.push_back(text("  <D>            - Delete selected profile"));
         content.push_back(text("  <S>            - Select profile as current"));
+        content.push_back(text(""));
+
+        // Log modal shortcuts
+        content.push_back(text("Log Window:") | bold);
+        content.push_back(text("  <R>            - Retry selected failed file"));
+        content.push_back(text("  <A>            - Retry all failed files"));
         content.push_back(text(""));
 
         content.push_back(separator());
@@ -466,6 +473,10 @@ void MainScreen::startSync() {
             options.compress = true;
             options.showProgress = true;
             options.verbose = true;
+            options.fileCallback = [this](const std::string& filename, TransferStatus status,
+                                          const std::string& errorMessage) {
+                transferLog_.logFile(filename, status, errorMessage);
+            };
 
             auto progressCallback = [this](const RsyncExecutor::Progress& progress) {
                 std::lock_guard<std::mutex> lock(syncMutex_);
@@ -476,18 +487,12 @@ void MainScreen::startSync() {
                 syncStatus_ = oss.str();
             };
 
-            auto fileCallback = [this](const std::string& filename, TransferStatus status,
-                                       const std::string& errorMessage) {
-                transferLog_.logFile(filename, status, errorMessage);
-            };
-
             syncResult_ = rsync.execute(
                 selectedFiles,
                 repoRoot_,
                 remoteConfig_,
                 options,
-                progressCallback,
-                fileCallback
+                progressCallback
             );
 
             {
@@ -646,6 +651,10 @@ void MainScreen::retryFailedFiles(const std::vector<ChangeFile>& files) {
             options.compress = true;
             options.showProgress = true;
             options.verbose = true;
+            options.fileCallback = [this](const std::string& filename, TransferStatus status,
+                                          const std::string& errorMessage) {
+                transferLog_.logFile(filename, status, errorMessage);
+            };
 
             auto progressCallback = [this](const RsyncExecutor::Progress& progress) {
                 std::lock_guard<std::mutex> lock(syncMutex_);
@@ -656,18 +665,12 @@ void MainScreen::retryFailedFiles(const std::vector<ChangeFile>& files) {
                 syncStatus_ = oss.str();
             };
 
-            auto fileCallback = [this](const std::string& filename, TransferStatus status,
-                                       const std::string& errorMessage) {
-                transferLog_.logFile(filename, status, errorMessage);
-            };
-
             syncResult_ = rsync.execute(
                 files,
                 repoRoot_,
                 remoteConfig_,
                 options,
-                progressCallback,
-                fileCallback
+                progressCallback
             );
 
             {

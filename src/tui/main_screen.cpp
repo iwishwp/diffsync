@@ -113,6 +113,21 @@ SyncResult MainScreen::run() {
             }
             return true;
         }
+        // Handle L key to show log modal
+        if (event == Event::Character('l') || event == Event::Character('L')) {
+            if (syncModalShown_ && syncComplete_ && !transferLog_.getEntries().empty()) {
+                // Sync modal is open and complete - transition to log modal
+                // Note: Don't reset syncComplete_ - it's needed for state tracking
+                syncModalShown_ = false;
+                // Set retry files and update log modal list before showing
+                logModal_->setRetryFiles(lastSyncFiles_);
+                logModal_->show();
+                logModalShown_ = true;
+                return true;
+            }
+            // Otherwise, don't consume - let buildShortcuts handle it
+            return false;
+        }
         return false;
     });
 
@@ -362,15 +377,14 @@ ftxui::Component MainScreen::buildSyncModal() {
             }
         }
         if (event == Event::Character('l') || event == Event::Character('L')) {
-            // Show log modal
-            if (!transferLog_.getEntries().empty()) {
-                // Set log modal flag before closing sync modal
-                // This ensures log modal shows when sync modal closes
-                logModalShown_ = true;
-                // Close sync modal so log modal can be seen
-                syncModalShown_ = false;
+            // Don't handle L here - let it propagate to global handler
+            // global handler will close sync modal and show log modal
+            // Just return false to allow propagation
+            if (syncComplete_ && !transferLog_.getEntries().empty()) {
+                // Don't modify state here - let global handler do it
+                return false;  // Don't consume - propagate to global handler
             }
-            return true;
+            return false;
         }
         return false;
     });
@@ -693,8 +707,22 @@ void MainScreen::retryFailedFiles(const std::vector<ChangeFile>& files) {
                 progressCallback
             );
 
+            // Ensure all files are logged - mark unlogged files as failed
             {
                 std::lock_guard<std::mutex> lock(syncMutex_);
+                std::unordered_set<std::string> loggedFiles;
+                for (const auto& entry : transferLog_.getEntries()) {
+                    loggedFiles.insert(entry.filename);
+                }
+                for (const auto& file : files) {
+                    std::string filename = file.path.string();
+                    if (loggedFiles.find(filename) == loggedFiles.end()) {
+                        // File was not logged - mark as failed
+                        transferLog_.logFile(filename, TransferStatus::Failed,
+                            syncResult_.hasErrors() ? syncResult_.errors[0] : "Transfer failed");
+                    }
+                }
+
                 syncProgress_ = 100;
                 syncComplete_ = true;
                 syncing_ = false;

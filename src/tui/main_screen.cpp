@@ -361,10 +361,13 @@ ftxui::Component MainScreen::buildSyncModal() {
                 return true;
             }
         }
-        if ((event == Event::Character('l') || event == Event::Character('L')) && syncComplete_) {
+        if (event == Event::Character('l') || event == Event::Character('L')) {
             // Show log modal
             if (!transferLog_.getEntries().empty()) {
-                logModal_->show();
+                // Set log modal flag before closing sync modal
+                // This ensures log modal shows when sync modal closes
+                logModalShown_ = true;
+                // Close sync modal so log modal can be seen
                 syncModalShown_ = false;
             }
             return true;

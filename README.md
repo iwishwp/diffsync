@@ -66,7 +66,7 @@ diffsync status
 │                                                                      │
 │  Selected: 1/3  Total: ~23.2 KB                                      │
 ├──────────────────────────────────────────────────────────────────────┤
-│  [Enter] Sync  [L] Log  [Esc] Quit                                  │
+│  [Enter] Sync  [L] Log  [Q] Quit  [?] Help                            │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -76,7 +76,9 @@ diffsync status
 - `C` - 打开配置管理
 - `L` - 查看传输日志
 - `↑↓` - 导航
-- `Esc` - 退出
+- `Esc` - 关闭对话框/取消
+- `Q` - 退出程序
+- `?` - 帮助
 
 ### 配置文件
 
@@ -221,7 +223,7 @@ diffsync status
 │                                                                      │
 │  Selected: 1/3  Total: ~23.2 KB                                      │
 ├──────────────────────────────────────────────────────────────────────┤
-│  [Enter] Sync  [L] Log  [Esc] Quit                                  │
+│  [Enter] Sync  [L] Log  [Q] Quit  [?] Help                            │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -231,7 +233,9 @@ diffsync status
 - `C` - Open configuration management
 - `L` - View transfer log
 - `↑↓` - Navigate
-- `Esc` - Quit
+- `Esc` - Close dialog / Cancel
+- `Q` - Quit program
+- `?` - Help
 
 ### Configuration File
 

@@ -204,14 +204,16 @@ diffsync sync --dry-run
 │                                                                      │
 │  Selected: 1/6  Total: ~33.5 KB                                      │
 ├──────────────────────────────────────────────────────────────────────┤
-│  [↓] Sync to Remote                    [Esc] Quit                   │
+│  [↓] Sync to Remote              [Q] Quit  [?] Help                   │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
 **Keyboard Shortcuts:**
 - `Space` - Toggle selection
 - `Enter` - Start sync
-- `Esc` - Quit
+- `Q` - Quit program
+- `Esc` - Close dialog / Cancel
+- `?` - Help
 - `F1` - Switch profile
 - `↑↓` - Navigate
 

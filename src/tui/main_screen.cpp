@@ -75,7 +75,17 @@ SyncResult MainScreen::run() {
     auto component = buildUI();
 
     component |= CatchEvent([&](Event event) {
-        // Handle global shortcuts
+        // Handle Q key to quit program
+        if (event == Event::Character('q') || event == Event::Character('Q')) {
+            // Only quit if no modal is open (except sync modal which doesn't block quit)
+            if (!syncModalShown_ && !helpModalShown_ && !logModalShown_ && !configModalShown_) {
+                screen.ExitLoopClosure()();
+                return true;
+            }
+            // Don't consume Q if modal is open
+            return false;
+        }
+        // Handle ESC to close dialogs
         if (event == Event::Escape) {
             if (syncModalShown_) {
                 // Sync modal is open
@@ -98,11 +108,9 @@ SyncResult MainScreen::run() {
             } else if (configModalShown_) {
                 // Config modal is open - don't consume, let it handle
                 return false;
-            } else {
-                // No modal is open - exit the program
-                screen.ExitLoopClosure()();
-                return true;
             }
+            // No modal is open - don't exit, just return
+            return true;
         }
         // Handle ? key for help toggle/close
         if (event == Event::Character('?')) {
@@ -197,6 +205,8 @@ ftxui::Component MainScreen::buildUI() {
             text("Sync: <Enter>"),
             text(" | "),
             text("Help: <?>"),
+            text(" | "),
+            text("Quit: <Q>"),
         }));
 
         content.push_back(separator());
@@ -258,7 +268,8 @@ ftxui::Component MainScreen::buildHelpModal() {
         content.push_back(text("  <Enter>        - Sync selected files"));
         content.push_back(text("  <L>            - View transfer log"));
         content.push_back(text("  <?>            - Show this help"));
-        content.push_back(text("  <Esc>          - Quit / Close dialog"));
+        content.push_back(text("  <Q>            - Quit program"));
+        content.push_back(text("  <Esc>          - Close dialog / Cancel"));
         content.push_back(text(""));
 
         // Config modal shortcuts

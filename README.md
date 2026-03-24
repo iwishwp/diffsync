@@ -34,7 +34,7 @@ sudo make install
 
 **依赖要求：**
 - C++20 编译器 (GCC 11+, Clang 13+)
-- CMake >= 3.20
+- CMake >= 3.16
 - git >= 2.30
 - rsync >= 3.1
 - ssh
@@ -189,7 +189,7 @@ sudo make install
 
 **Requirements:**
 - C++20 compiler (GCC 11+, Clang 13+)
-- CMake >= 3.20
+- CMake >= 3.16
 - git >= 2.30
 - rsync >= 3.1
 - ssh

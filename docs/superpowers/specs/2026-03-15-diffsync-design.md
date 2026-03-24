@@ -489,7 +489,7 @@ tests/
 |-------------|---------------|
 | C++ Standard | C++20 |
 | Compiler | GCC 11+, Clang 13+, MSVC 2022+ |
-| CMake | >= 3.20 |
+| CMake | >= 3.16 |
 | Platform Support | Linux, macOS (primary); Windows (best effort) |
 | Linking | Prefer static linking for dependencies |
 

@@ -56,13 +56,13 @@ diffsync status
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│  diffsync - Config: dev (user@192.168.1.100:~/build)                │
+│  diffsync - Config: dev (user@192.168.1.100:~/build)                 │
 ├──────────────────────────────────────────────────────────────────────┤
-│  Toggle: <Space> | Select: <F2> | Sync: <Enter> | Help: <?> | Quit: <Q> │
+│Toggle: <Space> | Select: <F2> | Sync: <Enter> | Help: <?> | Quit: <Q>│
 ├──────────────────────────────────────────────────────────────────────┤
-│  [*] src/main.cpp           12.4 KB  Modified                      │
-│  [ ] include/api.h          2.1 KB   Added                          │
-│  [ ] tests/test.cpp         8.7 KB  Modified                       │
+│  [*] src/main.cpp           12.4 KB  Modified                        │
+│  [ ] include/api.h          2.1 KB   Added                           │
+│  [ ] tests/test.cpp         8.7 KB  Modified                         │
 │                                                                      │
 ├──────────────────────────────────────────────────────────────────────┤
 │  Selected: 1/3  Total: 23.2 KB                                       │
@@ -135,12 +135,12 @@ diffsync config use <name>     # 切换默认配置
 ┌─────────────────────────────────────────────┐
 │           Transfer Log                      │
 ├─────────────────────────────────────────────┤
-│  ✓ src/main.cpp              Success       │
+│  ✓ src/main.cpp              Success        │
 │  ✓ include/api.h              Success       │
 │  ✗ tests/test.cpp             Failed        │
 │     → Permission denied                     │
 │                                             │
-│  [Files: 3]  [Success: 2]  [Failed: 1]     │
+│  [Files: 3]  [Success: 2]  [Failed: 1]      │
 │                                             │
 │  [R] Retry Selected  [A] Retry All Failed   │
 │  [Esc] Close / [Q] Quit                     │
@@ -212,13 +212,13 @@ diffsync status
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│  diffsync - Config: dev (user@192.168.1.100:~/build)                │
+│  diffsync - Config: dev (user@192.168.1.100:~/build)                 │
 ├──────────────────────────────────────────────────────────────────────┤
-│  Toggle: <Space> | Select: <F2> | Sync: <Enter> | Help: <?> | Quit: <Q> │
+│Toggle: <Space> | Select: <F2> | Sync: <Enter> | Help: <?> | Quit: <Q>│
 ├──────────────────────────────────────────────────────────────────────┤
-│  [*] src/main.cpp           12.4 KB  Modified                      │
-│  [ ] include/api.h          2.1 KB   Added                          │
-│  [ ] tests/test.cpp         8.7 KB  Modified                       │
+│  [*] src/main.cpp           12.4 KB  Modified                        │
+│  [ ] include/api.h          2.1 KB   Added                           │
+│  [ ] tests/test.cpp         8.7 KB  Modified                         │
 │                                                                      │
 ├──────────────────────────────────────────────────────────────────────┤
 │  Selected: 1/3  Total: 23.2 KB                                       │
@@ -291,12 +291,12 @@ After sync completes, press `L` to view detailed transfer log:
 ┌─────────────────────────────────────────────┐
 │           Transfer Log                      │
 ├─────────────────────────────────────────────┤
-│  ✓ src/main.cpp              Success       │
+│  ✓ src/main.cpp              Success        │
 │  ✓ include/api.h              Success       │
 │  ✗ tests/test.cpp             Failed        │
 │     → Permission denied                     │
 │                                             │
-│  [Files: 3]  [Success: 2]  [Failed: 1]     │
+│  [Files: 3]  [Success: 2]  [Failed: 1]      │
 │                                             │
 │  [R] Retry Selected  [A] Retry All Failed   │
 │  [Esc] Close / [Q] Quit                     │

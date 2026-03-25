@@ -65,46 +65,6 @@ ftxui::Component ConfigModal::operator()(bool* externalShown) {
     // ============================================
     auto listMenu = Menu(&listEntries_, &listFocusedIndex_);
 
-    // Add list-specific event handlers
-    listMenu |= CatchEvent([this](Event event) {
-        // Navigation is handled by Menu automatically
-
-        // Add new profile
-        if (event == Event::Character('a') || event == Event::Character('A')) {
-            startAdd();
-            return true;
-        }
-
-        // Edit current profile
-        if ((event == Event::Character('e') || event == Event::Character('E')) &&
-            !configs_.empty()) {
-            startEdit(listFocusedIndex_);
-            return true;
-        }
-
-        // Delete current profile
-        if ((event == Event::Character('d') || event == Event::Character('D')) &&
-            !configs_.empty()) {
-            deleteConfig(listFocusedIndex_);
-            return true;
-        }
-
-        // Select current profile
-        if ((event == Event::Character('s') || event == Event::Character('S')) &&
-            !configs_.empty()) {
-            selectConfig(listFocusedIndex_);
-            return true;
-        }
-
-        // Close modal
-        if (event == Event::Escape) {
-            hide();
-            return true;
-        }
-
-        return false;
-    });
-
     // Wrap list menu with proper rendering
     auto listRenderer = Renderer(listMenu, [this, listMenu] {
         Elements content;
@@ -140,6 +100,44 @@ ftxui::Component ConfigModal::operator()(bool* externalShown) {
         }) | center);
 
         return vbox(content) | border | size(WIDTH, LESS_THAN, 60) | center;
+    });
+
+    // Add event handlers to the list renderer (not listMenu, so events work even when list is empty)
+    listRenderer |= CatchEvent([this](Event event) {
+        // Add new profile
+        if (event == Event::Character('a') || event == Event::Character('A')) {
+            startAdd();
+            return true;
+        }
+
+        // Edit current profile
+        if ((event == Event::Character('e') || event == Event::Character('E')) &&
+            !configs_.empty()) {
+            startEdit(listFocusedIndex_);
+            return true;
+        }
+
+        // Delete current profile
+        if ((event == Event::Character('d') || event == Event::Character('D')) &&
+            !configs_.empty()) {
+            deleteConfig(listFocusedIndex_);
+            return true;
+        }
+
+        // Select current profile
+        if ((event == Event::Character('s') || event == Event::Character('S')) &&
+            !configs_.empty()) {
+            selectConfig(listFocusedIndex_);
+            return true;
+        }
+
+        // Close modal
+        if (event == Event::Escape) {
+            hide();
+            return true;
+        }
+
+        return false;
     });
 
     // ============================================

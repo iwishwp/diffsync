@@ -58,27 +58,26 @@ diffsync status
 ┌──────────────────────────────────────────────────────────────────────┐
 │  diffsync - Config: dev (user@192.168.1.100:~/build)                │
 ├──────────────────────────────────────────────────────────────────────┤
-│  [?] Help  [F2] Select All  [C] Config  [Enter] Sync                │
+│  Toggle: <Space> | Select: <F2> | Sync: <Enter> | Help: <?> | Quit: <Q> │
 ├──────────────────────────────────────────────────────────────────────┤
-│  [✓] src/main.cpp           12.4 KB  Modified                      │
+│  [*] src/main.cpp           12.4 KB  Modified                      │
 │  [ ] include/api.h          2.1 KB   Added                          │
-│  [ ] tests/test.cpp         8.7 KB   Modified                       │
+│  [ ] tests/test.cpp         8.7 KB  Modified                       │
 │                                                                      │
-│  Selected: 1/3  Total: ~23.2 KB                                      │
 ├──────────────────────────────────────────────────────────────────────┤
-│  [Enter] Sync  [L] Log  [Q] Quit  [?] Help                            │
+│  Selected: 1/3  Total: 23.2 KB                                       │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
 **快捷键：**
-- `Space` / `Enter` - 切换选择 / 开始同步
+- `Space` - 切换选择
+- `Enter` - 开始同步
 - `F2` - 全选/取消全选
 - `C` - 打开配置管理
 - `L` - 查看传输日志
-- `↑↓` - 导航
-- `Esc` - 关闭对话框/取消
 - `Q` - 退出程序
 - `?` - 帮助
+- `Esc` - 关闭对话框/取消
 
 ### 配置文件
 
@@ -144,7 +143,7 @@ diffsync config use <name>     # 切换默认配置
 │  [Files: 3]  [Success: 2]  [Failed: 1]     │
 │                                             │
 │  [R] Retry Selected  [A] Retry All Failed   │
-│  [Esc] Close                                │
+│  [Esc] Close / [Q] Quit                     │
 └─────────────────────────────────────────────┘
 ```
 
@@ -215,27 +214,26 @@ diffsync status
 ┌──────────────────────────────────────────────────────────────────────┐
 │  diffsync - Config: dev (user@192.168.1.100:~/build)                │
 ├──────────────────────────────────────────────────────────────────────┤
-│  [?] Help  [F2] Select All  [C] Config  [Enter] Sync                │
+│  Toggle: <Space> | Select: <F2> | Sync: <Enter> | Help: <?> | Quit: <Q> │
 ├──────────────────────────────────────────────────────────────────────┤
-│  [✓] src/main.cpp           12.4 KB  Modified                      │
+│  [*] src/main.cpp           12.4 KB  Modified                      │
 │  [ ] include/api.h          2.1 KB   Added                          │
-│  [ ] tests/test.cpp         8.7 KB   Modified                       │
+│  [ ] tests/test.cpp         8.7 KB  Modified                       │
 │                                                                      │
-│  Selected: 1/3  Total: ~23.2 KB                                      │
 ├──────────────────────────────────────────────────────────────────────┤
-│  [Enter] Sync  [L] Log  [Q] Quit  [?] Help                            │
+│  Selected: 1/3  Total: 23.2 KB                                       │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
 **Keyboard Shortcuts:**
-- `Space` / `Enter` - Toggle selection / Start sync
+- `Space` - Toggle selection
+- `Enter` - Start sync
 - `F2` - Select all / Unselect all
 - `C` - Open configuration management
 - `L` - View transfer log
-- `↑↓` - Navigate
-- `Esc` - Close dialog / Cancel
 - `Q` - Quit program
 - `?` - Help
+- `Esc` - Close dialog / Cancel
 
 ### Configuration File
 
@@ -301,7 +299,7 @@ After sync completes, press `L` to view detailed transfer log:
 │  [Files: 3]  [Success: 2]  [Failed: 1]     │
 │                                             │
 │  [R] Retry Selected  [A] Retry All Failed   │
-│  [Esc] Close                                │
+│  [Esc] Close / [Q] Quit                     │
 └─────────────────────────────────────────────┘
 ```
 
